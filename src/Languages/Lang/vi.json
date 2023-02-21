@@ -1,0 +1,26 @@
+{
+  "main": {
+    "Login": "Đăng nhập",
+    "Username": "Tên đăng nhập",
+    "Password": "Mật khẩu",
+    "Forget password?": "Quên mật khẩu?",
+    "register": "đăng ký",
+    "Logout": "Đăng xuất"
+  },
+  "home": {
+    "Checkin": "Điểm danh",
+    "Payment": "Thanh toán điện tử",
+    "Tuition": "Thanh toán học phí",
+    "InOut": "Xác thực ra/vào",
+    "InOut2Line": "Xác thực\nra/vào",
+    "News": "Tin Tức",
+    "InternalAccount2Line": "Tài khoản\nnội bộ",
+    "Internal Account": "Tài khoản nội bộ",
+    "Home": "Trang chủ",
+    "Account": "Tài khoản",
+    "AccountInformation": "Thông tin tài khoản"
+  },
+  "checkin": {
+    "History": "Xem lịch sử"
+  }
+}
