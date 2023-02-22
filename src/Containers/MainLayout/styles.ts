@@ -13,4 +13,7 @@ export default StyleSheet.create({
   backButton: {
     alignItems: 'center',
   },
+  icon: {
+    left: 0,
+  },
 });

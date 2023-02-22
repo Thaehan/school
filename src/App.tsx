@@ -1,7 +1,5 @@
-import {View, StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
-import {Colors} from 'react-native-ui-lib';
-import RNBootSplash from 'react-native-bootsplash';
+import React from 'react';
 
 import '@Themes';
 import {store} from '@Store/configureStore';

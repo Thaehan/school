@@ -10,7 +10,6 @@ import {translate} from '@Languages/Translate';
 import styles from './styles';
 
 export default function HomeScreen(nav: NativeStackScreenProps<any>) {
-  console.log(nav);
   return (
     <MainContainer>
       {/* <StatusBar backgroundColor={Colors.primary} barStyle="dark-content" /> */}

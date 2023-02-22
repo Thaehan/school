@@ -1,7 +1,6 @@
 import {View, Text, TouchableOpacity, Colors} from 'react-native-ui-lib';
 import React from 'react';
 import {ScrollView} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 
 import SvgXml, {BackIcon} from '@Components/SvgXml';
 import styles from './styles';
@@ -20,6 +19,7 @@ export default function MainLayout({
   padding,
   paddingB,
   paddingT,
+  isFlatList = false,
 }: {
   right?: any;
   hideBackButton?: boolean;
@@ -35,6 +35,7 @@ export default function MainLayout({
   paddingB?: number;
   paddingT?: number;
   padding?: number;
+  isFlatList?: boolean;
 }) {
   return (
     <View
@@ -49,66 +50,61 @@ export default function MainLayout({
         barStyle="dark-content"
       /> */}
       {!hideHeader ? (
-        <LinearGradient
-          start={{x: 0, y: 0}}
-          end={{x: 0, y: 1}}
-          colors={[Colors.secondary, Colors.primary]}
-          style={styles.linearGradient}>
-          <View row paddingT-30 paddingB-10>
-            {/* <ImageBackground
-            style={{
-              minHeight: '100%',
-              justifyContent: 'flex-end',
-              paddingBottom: 16,
-            }}
-            source={require('@Assets/Image/HeaderBackground.png')}> */}
-            <View row centerV>
-              {!hideBackButton ? (
-                <TouchableOpacity
-                  center
-                  height={'100%'}
-                  width={'10%'}
-                  onPress={() => {
-                    navigation.pop();
-                  }}>
-                  <SvgXml xml={BackIcon} style={{left: 0}} />
-                </TouchableOpacity>
-              ) : (
-                <View height={'100%'} width={'10%'} />
-              )}
-              <View centerH width={'80%'}>
-                <Text primaryBold white lg>
-                  {title}
-                </Text>
-              </View>
-              <View centerV width={'10%'}>
-                {right && right.type === 'string' && (
-                  <TouchableOpacity onPress={right.onPress}>
-                    <Text white>{right.title}</Text>
-                  </TouchableOpacity>
-                )}
-                {right && right.type === 'component' && right.component}
-              </View>
+        <View centerV row spread padding-12>
+          <View row centerV>
+            {!hideBackButton ? (
+              <TouchableOpacity
+                paddingV-10
+                center
+                width={'10%'}
+                onPress={() => {
+                  navigation.pop();
+                }}>
+                <SvgXml xml={BackIcon} style={styles.icon} />
+              </TouchableOpacity>
+            ) : (
+              <View height={'100%'} width={'10%'} />
+            )}
+            <View centerH width={'80%'}>
+              <Text primaryBold white lg>
+                {title}
+              </Text>
             </View>
-            {/* </ImageBackground> */}
+            <View centerV width={'10%'}>
+              {right && right.type === 'string' && (
+                <TouchableOpacity onPress={right.onPress}>
+                  <Text white>{right.title}</Text>
+                </TouchableOpacity>
+              )}
+              {right && right.type === 'component' && right.component}
+            </View>
           </View>
-        </LinearGradient>
+          {/* </ImageBackground> */}
+        </View>
       ) : null}
       <View
         flex
-        backgroundColor={
-          backgroundColor ? backgroundColor : Colors.backgroundMain
-        }
+        //@ts-expect-error
+        shadow
+        paddingT-8
+        paddingB-30
+        bg-white
         style={{
+          borderTopRightRadius: 24,
+          borderTopLeftRadius: 24,
+          paddingBottom: paddingB ? paddingB : 16,
+          paddingTop: paddingT ? paddingT : 10,
           paddingVertical: paddingV ? paddingV : 0,
-          paddingHorizontal: paddingH ? paddingH : 0,
+          paddingHorizontal: paddingH ? paddingH : 16,
           padding: padding ? padding : 0,
-          paddingBottom: paddingB ? paddingB : 0,
-          paddingTop: paddingT ? paddingT : 0,
         }}>
-        <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false}>
-          {children}
-        </ScrollView>
+        {isFlatList ? (
+          children
+        ) : (
+          <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false}>
+            {children}
+          </ScrollView>
+        )}
       </View>
       {subButton && subButton}
     </View>

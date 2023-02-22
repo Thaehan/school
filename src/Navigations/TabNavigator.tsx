@@ -9,7 +9,6 @@ import AccountScreen from '@Screens/AccountScreen';
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigator(nav: NativeStackScreenProps<any>) {
-  console.log(nav);
   return (
     <Tab.Navigator
       screenOptions={{headerShown: false}}

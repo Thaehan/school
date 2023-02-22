@@ -10,11 +10,10 @@ export default function TopicListScreen(nav: NativeStackScreenProps<any>) {
   return (
     <MainContainer>
       <MainLayout
+        backgroundColor={Colors.primary}
         title="Danh sách đề tài"
         navigation={navigation}
-        statusBarColor={Colors.secondary}
-        paddingH={16}
-        paddingB={8}>
+        statusBarColor={Colors.secondary}>
         <Text>TopicListScreen</Text>
       </MainLayout>
     </MainContainer>

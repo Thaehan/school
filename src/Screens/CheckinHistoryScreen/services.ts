@@ -89,7 +89,6 @@ export default function useCheckinHistory(nav: NativeStackScreenProps<any>) {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      console.log(nav);
       setIsLoading(false);
     }, 20);
     return () => clearTimeout(timeout);
