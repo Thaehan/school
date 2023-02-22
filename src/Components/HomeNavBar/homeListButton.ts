@@ -3,24 +3,24 @@ import {translate} from '@Languages/Translate';
 import {IHomeListButton} from '@Types/IHomeListButton';
 
 const homeListButton: IHomeListButton[] = [
+  // {
+  //   id: 1,
+  //   name: translate('home.Checkin'),
+  //   assetName: 'checkin',
+  //   screenName: ScreenNames.CheckinHistory,
+  // },
   {
-    id: 1,
-    name: translate('home.Checkin'),
-    assetName: 'checkin',
-    screenName: ScreenNames.CheckinHistory,
+    id: 2,
+    name: translate('home.TeacherList'),
+    assetName: 'payment',
+    screenName: ScreenNames.TeacherList,
   },
-  // {
-  //   id: 2,
-  //   name: translate('home.Payment'),
-  //   assetName: 'payment',
-  //   screenName: '',
-  // },
-  // {
-  //   id: 3,
-  //   name: translate('home.Tuition'),
-  //   assetName: 'tuition',
-  //   screenName: '',
-  // },
+  {
+    id: 3,
+    name: translate('home.TopicList'),
+    assetName: 'tuition',
+    screenName: ScreenNames.TopicList,
+  },
   // {
   //   id: 4,
   //   name: translate('home.InOut2Line'),

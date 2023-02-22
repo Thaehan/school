@@ -2,8 +2,6 @@ import {View, Text, Colors} from 'react-native-ui-lib';
 import React, {ReactNode} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 
-import {fontSizes} from '@Themes/Fonts';
-
 export default function CardView({
   title,
   children,

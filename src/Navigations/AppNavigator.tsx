@@ -1,21 +1,19 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
-import {Platform, useWindowDimensions} from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
 
+import TabNavigator from './TabNavigator';
 import ScreenNames from '@Constants/ScreenNames';
 import HomeScreen from '@Screens/HomeScreen';
 import LoginScreen from '@Screens/LoginScreen';
 import CheckinScreen from '@Screens/CheckinScreen';
 import CheckinHistoryScreen from '@Screens/CheckinHistoryScreen';
-import TabNavigator from './TabNavigator';
 import AccountScreen from '@Screens/AccountScreen';
+import TeacherListScreen from '@Screens/TeacherListScreen';
+import TopicListScreen from '@Screens/TopicListScreen';
 
 const MainStack = createNativeStackNavigator();
-const Drawer = createDrawerNavigator();
 
 const MainScreenStack = () => {
   return (
@@ -32,13 +30,19 @@ const MainScreenStack = () => {
         name={ScreenNames.CheckinHistory}
         component={CheckinHistoryScreen}
       />
+      <MainStack.Screen
+        name={ScreenNames.TeacherList}
+        component={TeacherListScreen}
+      />
+      <MainStack.Screen
+        name={ScreenNames.TopicList}
+        component={TopicListScreen}
+      />
     </MainStack.Navigator>
   );
 };
 
 const AppNavigator = () => {
-  const {width} = useWindowDimensions();
-
   return (
     <NavigationContainer onReady={() => RNBootSplash.hide({fade: true})}>
       <MainScreenStack />

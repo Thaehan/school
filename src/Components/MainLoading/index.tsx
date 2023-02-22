@@ -1,4 +1,4 @@
-import {View, Text, Colors} from 'react-native-ui-lib';
+import {View, Colors} from 'react-native-ui-lib';
 import {ActivityIndicator} from 'react-native';
 import React from 'react';
 

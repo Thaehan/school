@@ -1,16 +1,14 @@
 import {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {Alert} from 'react-native';
 import {} from 'react-native-ui-lib';
 
-import {IRootState} from '@Store/configureStore';
 import ScreenNames from '@Constants/ScreenNames';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {setLoading} from '@Store/Reducers/loadingSlice';
 
 export default function useLogin(navigation: NativeStackScreenProps<any>) {
   const dispatch = useDispatch();
-  const user = useSelector((state: IRootState) => state.user);
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 

@@ -5,7 +5,7 @@ import {
   FlatList,
   StyleSheet,
 } from 'react-native';
-import {View, Text} from 'react-native-ui-lib';
+import {View} from 'react-native-ui-lib';
 import React, {ReactNode, useRef} from 'react';
 import {useScrollToTop} from '@react-navigation/native';
 import {useRefetch} from '@Utils/useRefetch';

@@ -1,7 +1,6 @@
 import {View, Text} from 'react-native-ui-lib';
 import React from 'react';
 
-import {IAdminInformation} from '@Types/IAdminInformation';
 import moment from 'moment';
 
 export default function AccountDetailItem({

@@ -1,7 +1,6 @@
-import {View, Text, TouchableOpacity, Image, Colors} from 'react-native-ui-lib';
+import {View, Text, TouchableOpacity, Colors} from 'react-native-ui-lib';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {ScrollView, ImageBackground, StatusBar} from 'react-native';
+import {ScrollView} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import SvgXml, {BackIcon} from '@Components/SvgXml';
@@ -16,7 +15,6 @@ export default function MainLayout({
   subButton,
   hideHeader,
   backgroundColor,
-  statusBarColor,
   paddingH,
   paddingV,
   padding,

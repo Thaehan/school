@@ -1,13 +1,12 @@
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {Colors, View, Text, TouchableOpacity} from 'react-native-ui-lib';
-import {Calendar, CalendarList} from 'react-native-calendars';
+import {Calendar} from 'react-native-calendars';
 
 import MainContainer from '@Containers/MainContainer';
 import MainLayout from '@Containers/MainLayout';
 import useCheckin from './services';
 import styles from './styles';
-import DayComponent from '@Components/DayComponent';
 import moment from 'moment';
 import {fontFamilies, fontSizes} from '@Themes/Fonts';
 import SvgXml, {
@@ -15,14 +14,12 @@ import SvgXml, {
   ArrowNextIcon,
   NextArrowColorIcon,
 } from '@Components/SvgXml';
-import PrimaryButton from '@Components/PrimaryButton';
 import {translate} from '@Languages/Translate';
-import FlatlistPaged from '@Components/FlatlistPaged';
 import CheckinItem from '@Components/CheckinItem';
 import MainLoading from '@Components/MainLoading';
 
 export default function CheckinScreen(nav: NativeStackScreenProps<any>) {
-  const {navigation, route} = nav;
+  const {navigation} = nav;
   const {
     selectedDate,
     setSelectedDate,
@@ -32,14 +29,6 @@ export default function CheckinScreen(nav: NativeStackScreenProps<any>) {
     handleHistory,
     isLoading,
   } = useCheckin(nav);
-
-  const renderEmpty = () => {
-    return (
-      <View>
-        <Text>Empty</Text>
-      </View>
-    );
-  };
 
   return (
     <MainContainer>
@@ -81,7 +70,7 @@ export default function CheckinScreen(nav: NativeStackScreenProps<any>) {
             <Calendar
               renderArrow={direction => (
                 <SvgXml
-                  xml={direction == 'left' ? ArrowBackIcon : ArrowNextIcon}
+                  xml={direction === 'left' ? ArrowBackIcon : ArrowNextIcon}
                 />
               )}
               firstDay={1}

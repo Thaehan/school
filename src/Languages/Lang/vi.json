@@ -18,7 +18,9 @@
     "Internal Account": "Tài khoản nội bộ",
     "Home": "Trang chủ",
     "Account": "Tài khoản",
-    "AccountInformation": "Thông tin tài khoản"
+    "AccountInformation": "Thông tin tài khoản",
+    "TeacherList": "Danh sách giảng viên",
+    "TopicList": "Danh sách đề tài"
   },
   "checkin": {
     "History": "Xem lịch sử"

@@ -1,6 +1,5 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {LegacyRef, useEffect, useRef, useState} from 'react';
-import {CarouselProps, Carousel} from 'react-native-ui-lib';
+import {useEffect, useRef, useState} from 'react';
 
 import {ICheckinItem} from '@Types/ICheckinItem';
 
@@ -79,7 +78,6 @@ const mock: ICheckinItem[] = [
 ];
 
 export default function useCheckinHistory(nav: NativeStackScreenProps<any>) {
-  const {navigation, route} = nav;
   const carouselRef = useRef<any>(null);
   const [currentTab, setCurrentTab] = useState<number>(0);
   const [checkinList, setCheckinList] = useState<ICheckinItem[]>(mock);
@@ -91,6 +89,7 @@ export default function useCheckinHistory(nav: NativeStackScreenProps<any>) {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
+      console.log(nav);
       setIsLoading(false);
     }, 20);
     return () => clearTimeout(timeout);

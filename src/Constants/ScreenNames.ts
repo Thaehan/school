@@ -6,4 +6,6 @@ export default {
   Account: 'AccountScreen',
   MainTab: 'TabNavigatorScreen',
   Splash: 'SplashScreen',
+  TeacherList: 'TeacherListScreen',
+  TopicList: 'TopicListScreen',
 };

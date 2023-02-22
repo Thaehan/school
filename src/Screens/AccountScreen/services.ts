@@ -1,5 +1,4 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import moment from 'moment';
 import {useEffect, useState} from 'react';
 import {Alert, AlertButton} from 'react-native';
 

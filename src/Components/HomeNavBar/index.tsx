@@ -1,22 +1,19 @@
-import {Text, useWindowDimensions} from 'react-native';
 import {View} from 'react-native-ui-lib';
-import React, {useState} from 'react';
+import React from 'react';
 import homeListButton from './homeListButton';
 import HomeNavItem from './HomeNavItem';
 
 export default function HomeNavBar() {
-  const {width} = useWindowDimensions();
-  const widthItem = width / 4;
-  const [listNav, setListNav] = useState(homeListButton.slice(0, 9));
-  const [isFull, setIsFull] = useState(false);
+  const widthItem = '25%';
+  // const [listNav, setListNav] = useState(homeListButton.slice(0, 9));
+  // const [isFull, setIsFull] = useState(false);
   return (
     <View
       row
-      centerH
       marginT-20
       //@ts-expect-errors
       flexWrap="wrap">
-      {homeListButton.map((item, index) => {
+      {homeListButton.map(item => {
         return (
           <HomeNavItem
             id={item.id}

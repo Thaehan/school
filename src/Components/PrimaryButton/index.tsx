@@ -1,11 +1,10 @@
+import React from 'react';
 import {StyleProp, ViewStyle, TextStyle} from 'react-native';
-import {View, TouchableOpacity, Text} from 'react-native-ui-lib';
+import {TouchableOpacity, Text} from 'react-native-ui-lib';
 import styles from './styles';
 
 export default function PrimaryButton({
   label,
-  textColor,
-  backgroundColor,
   containerStyle,
   textStyle,
   onPress,
@@ -21,7 +20,9 @@ export default function PrimaryButton({
     <TouchableOpacity
       style={containerStyle ? containerStyle : styles.container}
       onPress={() => {
-        if (onPress) onPress();
+        if (onPress) {
+          onPress();
+        }
       }}>
       <Text primaryRegular style={textStyle ? textStyle : styles.text}>
         {label}

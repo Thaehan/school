@@ -11,16 +11,9 @@ import CheckinItem from '@Components/CheckinItem';
 import MainLoading from '@Components/MainLoading';
 
 export default function CheckinHistoryScreen(nav: NativeStackScreenProps<any>) {
-  const {navigation, route} = nav;
-  const {
-    currentTab,
-    setCurrentTab,
-    carouselRef,
-    checkinList,
-    setCheckinList,
-    isLoading,
-    setIsLoading,
-  } = useCheckinHistory(nav);
+  const {navigation} = nav;
+  const {currentTab, setCurrentTab, carouselRef, checkinList, isLoading} =
+    useCheckinHistory(nav);
 
   return (
     <MainContainer>
@@ -30,12 +23,12 @@ export default function CheckinHistoryScreen(nav: NativeStackScreenProps<any>) {
         statusBarColor={Colors.secondary}>
         <View row spread paddingV-10>
           <TabViewHeaderButton
-            isFocused={currentTab == 0}
+            isFocused={currentTab === 0}
             title="Theo ngày"
             onPress={() => setCurrentTab(0)}
           />
           <TabViewHeaderButton
-            isFocused={currentTab == 1}
+            isFocused={currentTab === 1}
             title="Theo môn học"
             onPress={() => setCurrentTab(1)}
           />

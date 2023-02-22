@@ -1,3 +1,4 @@
+import React from 'react';
 import {Colors, TouchableOpacity, View, Text} from 'react-native-ui-lib';
 import {Dimensions, StyleSheet} from 'react-native';
 
@@ -7,16 +8,15 @@ import SvgXml, {
   AccountFocus,
   AccountUnfocus,
 } from '@Components/SvgXml';
-import ScreenNames from '@Constants/ScreenNames';
 import {translate} from '@Languages/Translate';
 
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 export default function TabBar({state, navigation}: any) {
   const focus = state.index;
 
   const handleNavigate = (pressIndex: number) => {
-    if (pressIndex != focus) {
+    if (pressIndex !== focus) {
       navigation.navigate(state.routeNames[pressIndex], {hideBackButton: true});
     }
   };

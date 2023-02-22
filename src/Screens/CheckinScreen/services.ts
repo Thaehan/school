@@ -2,11 +2,8 @@ import ScreenNames from '@Constants/ScreenNames';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import moment from 'moment';
 import {useEffect, useState} from 'react';
-import {Colors} from 'react-native-ui-lib';
 
 import {ICheckinItem} from '@Types/ICheckinItem';
-import {useDispatch, useSelector} from 'react-redux';
-import {IRootState} from '@Store/configureStore';
 
 const mock: ICheckinItem[] = [
   {
@@ -82,9 +79,7 @@ const mock: ICheckinItem[] = [
 ];
 
 export default function useCheckin(nav: NativeStackScreenProps<any>) {
-  const {navigation, route} = nav;
-  const {localLoading} = useSelector((state: IRootState) => state.loading);
-  const dispatch = useDispatch();
+  const {navigation} = nav;
   const [currentDateString, setCurrentDateString] = useState<string>(
     moment().format('DD/MM/YYYY'),
   );
@@ -122,5 +117,6 @@ export default function useCheckin(nav: NativeStackScreenProps<any>) {
     handleHistory,
     checkinList,
     isLoading,
+    setCheckinList,
   };
 }

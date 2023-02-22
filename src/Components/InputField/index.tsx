@@ -1,10 +1,9 @@
-import {View, Text, Incubator, Button, Colors} from 'react-native-ui-lib';
+import {View, Colors} from 'react-native-ui-lib';
 import {TextInput, TextInputProps, StyleProp, ViewStyle} from 'react-native';
 import React from 'react';
 
 import styles from './styles';
 import shadowBox from '@Utils/shadowBox';
-import {fontSizes} from '@Themes/Fonts';
 
 interface IInputField extends TextInputProps {
   label: string;
@@ -24,20 +23,9 @@ interface IInputField extends TextInputProps {
 export default function InputField({
   label,
   isPassword = false,
-  placeholder,
   onChangeText,
-  error,
-  textAlign,
-  type,
-  important,
-  containerHeight,
-  inputBoxHeight,
   borderRadius,
-  backgroundColor,
-  onCloseSuggestion,
   disabledBoxShadow,
-  labelStyle,
-  ...props
 }: IInputField) {
   return (
     <View

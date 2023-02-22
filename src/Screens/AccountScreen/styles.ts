@@ -2,7 +2,7 @@ import {fontFamilies, fontSizes} from '@Themes/Fonts';
 import {Dimensions, StyleSheet} from 'react-native';
 import {Colors} from 'react-native-ui-lib';
 
-const {height, width} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 export default StyleSheet.create({
   logoutButton: {

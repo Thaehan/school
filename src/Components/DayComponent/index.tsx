@@ -1,4 +1,3 @@
-import {View, Text} from 'react-native';
 import React from 'react';
 import {TouchableOpacity} from 'react-native-ui-lib';
 
@@ -8,6 +7,7 @@ interface IDayComponent {
 }
 
 export default function DayComponent({data, onPress}: IDayComponent) {
+  console.log('', data);
   return (
     <TouchableOpacity
       onPress={() => {

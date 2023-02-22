@@ -1,9 +1,5 @@
-import {View, Text} from 'react-native';
 import React from 'react';
-import {
-  createBottomTabNavigator,
-  BottomTabBarProps,
-} from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import TabBar from '@Components/TabBar';
 import ScreenNames from '@Constants/ScreenNames';
@@ -13,6 +9,7 @@ import AccountScreen from '@Screens/AccountScreen';
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigator(nav: NativeStackScreenProps<any>) {
+  console.log(nav);
   return (
     <Tab.Navigator
       screenOptions={{headerShown: false}}

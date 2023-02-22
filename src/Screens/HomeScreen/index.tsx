@@ -1,33 +1,16 @@
-import {SafeAreaView, ScrollView, StatusBar} from 'react-native';
-import {
-  Button,
-  Colors,
-  Image,
-  View,
-  Text,
-  TouchableOpacity,
-} from 'react-native-ui-lib';
-import {useDispatch, useSelector} from 'react-redux';
+import {ScrollView} from 'react-native';
+import {Colors, Image, View, Text} from 'react-native-ui-lib';
 
-import SvgXml, {NotificationIcon} from '@Components/SvgXml';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import ScreenNames from '@Constants/ScreenNames';
-import {IRootState} from '@Store/configureStore';
-import {resetUser} from '@Store/Reducers/userSlice';
 import MainContainer from '@Containers/MainContainer';
-import MainLayout from '@Containers/MainLayout';
-import useHome from './services';
 import React from 'react';
 import HomeNavBar from '@Components/HomeNavBar';
 import CardView from '@Components/CardView';
 import {translate} from '@Languages/Translate';
-import {fontSizes} from '@Themes/Fonts';
 import styles from './styles';
 
 export default function HomeScreen(nav: NativeStackScreenProps<any>) {
-  const {navigation, route} = nav;
-  const {handleCheckin} = useHome(nav);
-
+  console.log(nav);
   return (
     <MainContainer>
       {/* <StatusBar backgroundColor={Colors.primary} barStyle="dark-content" /> */}
@@ -59,14 +42,6 @@ export default function HomeScreen(nav: NativeStackScreenProps<any>) {
                 0123456789
               </Text>
             </View>
-            {/* <TouchableOpacity onPress={() => {}}>
-              <View centerH bottom>
-                <SvgXml xml={NotificationIcon} />
-                <Text primaryLight white xxs>
-                  Thông báo
-                </Text>
-              </View>
-            </TouchableOpacity> */}
           </View>
           {/**Body */}
           <CardView isGradient>

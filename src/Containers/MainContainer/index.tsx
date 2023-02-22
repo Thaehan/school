@@ -1,6 +1,6 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {SafeAreaView, Dimensions, StyleSheet, StatusBar} from 'react-native';
-import {Colors, View} from 'react-native-ui-lib';
+import {Colors} from 'react-native-ui-lib';
+import React from 'react';
 
 import {fontFamilies} from '@Themes/Fonts';
 

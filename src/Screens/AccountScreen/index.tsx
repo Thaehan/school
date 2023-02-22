@@ -1,4 +1,4 @@
-import {View, Text, Carousel, Image} from 'react-native-ui-lib';
+import {View, Image} from 'react-native-ui-lib';
 import React, {useEffect} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
@@ -13,8 +13,7 @@ import styles from './styles';
 
 export default function AccountScreen(nav: NativeStackScreenProps<any>) {
   const {navigation, route} = nav;
-  const {isLoading, setIsLoading, administratorInformation, onPressLogout} =
-    useAccount(nav);
+  const {isLoading, administratorInformation, onPressLogout} = useAccount(nav);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -50,14 +49,12 @@ export default function AccountScreen(nav: NativeStackScreenProps<any>) {
               />
             </View>
             <View>
-              {Object.entries(administratorInformation).map(
-                ([key, value], index) => {
-                  console.log('Info', key, value);
-                  return (
-                    <AccountDetailItem key={key} label={key} value={value} />
-                  );
-                },
-              )}
+              {Object.entries(administratorInformation).map(([key, value]) => {
+                console.log('Info', key, value);
+                return (
+                  <AccountDetailItem key={key} label={key} value={value} />
+                );
+              })}
             </View>
             <PrimaryButton
               containerStyle={styles.logoutButton}
