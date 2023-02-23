@@ -8,6 +8,7 @@ export default function PrimaryButton({
   containerStyle,
   textStyle,
   onPress,
+  textColor,
 }: {
   label: string;
   onPress?: () => void;
@@ -24,7 +25,12 @@ export default function PrimaryButton({
           onPress();
         }
       }}>
-      <Text primaryRegular style={textStyle ? textStyle : styles.text}>
+      <Text
+        primaryRegular
+        style={[
+          {color: textColor ? textColor : 'white'},
+          textStyle ? textStyle : styles.text,
+        ]}>
         {label}
       </Text>
     </TouchableOpacity>

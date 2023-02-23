@@ -40,9 +40,7 @@ export default function MainLayout({
   return (
     <View
       flex
-      backgroundColor={
-        backgroundColor ? backgroundColor : Colors.backgroundMain
-      }>
+      backgroundColor={backgroundColor ? backgroundColor : Colors.primary}>
       {/* <StatusBar
         backgroundColor={
           statusBarColor ? statusBarColor : Colors.backgroundMain

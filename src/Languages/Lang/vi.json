@@ -5,7 +5,8 @@
     "Password": "Mật khẩu",
     "Forget password?": "Quên mật khẩu?",
     "register": "đăng ký",
-    "Logout": "Đăng xuất"
+    "Logout": "Đăng xuất",
+    "UpdateInformation": "Cập nhật thông tin"
   },
   "home": {
     "Checkin": "Điểm danh",
@@ -21,6 +22,13 @@
     "AccountInformation": "Thông tin tài khoản",
     "TeacherList": "Danh sách giảng viên",
     "TopicList": "Danh sách đề tài"
+  },
+  "business": {
+    "TeacherId": "Mã giảng viên",
+    "PhoneNumber": "Số điện thoại",
+    "Email": "E-mail",
+    "DateOfBirth": "Ngày sinh",
+    "MainMajor": "Chuyên ngành"
   },
   "checkin": {
     "History": "Xem lịch sử"

@@ -16,6 +16,7 @@ import AccountUnfocus from '@Assets/Svg/AccountUnfocus.svg';
 import InfoIcon from '@Assets/Svg/InfoIcon.svg';
 import SettingInfoIcon from '@Assets/Svg/SettingInfoIcon.svg';
 import QAIcon from '@Assets/Svg/QAIcon.svg';
+import LogoutIcon from '@Assets/Svg/LogoutIcon.svg';
 
 interface ISVGProps extends SvgProps {
   xml: any;
@@ -26,6 +27,7 @@ export default function SvgXml(props: ISVGProps) {
 }
 
 export {
+  LogoutIcon,
   CalendarIcon,
   LogoIcon,
   BackIcon,

@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
-import mockList from './mock.json';
+
+import mockList from '@Assets/Data/teacherList.json';
 import {ITeacher} from '@Types/ITeacher';
 
 export default function useTeacherList() {
@@ -18,7 +19,12 @@ export default function useTeacherList() {
   };
 
   useEffect(() => {
-    getTeacherList();
+    setIsLoading(true);
+    const timeout = setTimeout(() => {
+      getTeacherList();
+    }, 500);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   return {

@@ -1,5 +1,5 @@
 import {View, Image} from 'react-native-ui-lib';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import MainContainer from '@Containers/MainContainer';
@@ -10,31 +10,17 @@ import MainLoading from '@Components/MainLoading';
 import AccountDetailItem from '@Components/AccountDetailItem';
 import PrimaryButton from '@Components/PrimaryButton';
 import styles from './styles';
+import SubButton from '@Components/SubButton';
 
 export default function AccountScreen(nav: NativeStackScreenProps<any>) {
   const {navigation, route} = nav;
-  const {isLoading, administratorInformation, onPressLogout} = useAccount(nav);
-
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-      console.log('focus');
-    });
-
-    return unsubscribe;
-  }, [navigation]);
+  const {isLoading, administratorInformation, onPressLogout, onPressUpdate} =
+    useAccount(nav);
 
   return (
     <MainContainer>
       <MainLayout
-        // subButton={
-        //   <PrimaryButton
-        //     containerStyle={styles.logoutButton}
-        //     textStyle={styles.logoutText}
-        //     label={translate('main.Logout')}
-        //     onPress={() => onPressLogout()}
-        //   />
-        // }
-        backgroundColor="white"
+        subButton={<SubButton onPress={onPressLogout} />}
         hideBackButton={route?.params?.hideBackButton}
         title={translate('home.Account')}
         navigation={navigation}>
@@ -57,10 +43,10 @@ export default function AccountScreen(nav: NativeStackScreenProps<any>) {
               })}
             </View>
             <PrimaryButton
-              containerStyle={styles.logoutButton}
-              textStyle={styles.logoutText}
-              label={translate('main.Logout')}
-              onPress={() => onPressLogout()}
+              containerStyle={styles.updateButton}
+              textStyle={styles.updateText}
+              label={translate('main.UpdateInformation')}
+              onPress={onPressUpdate}
             />
           </View>
         ) : (

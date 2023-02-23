@@ -48,6 +48,10 @@ export default function useAccount(nav: NativeStackScreenProps<any>) {
     );
   };
 
+  const onPressUpdate = () => {
+    navigation.push(ScreenNames.UpdateAccount);
+  };
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsLoading(false);
@@ -62,5 +66,6 @@ export default function useAccount(nav: NativeStackScreenProps<any>) {
     administratorInformation,
     setAdministratorInformation,
     onPressLogout,
+    onPressUpdate,
   };
 }

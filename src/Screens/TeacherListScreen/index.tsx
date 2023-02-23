@@ -6,20 +6,24 @@ import MainContainer from '@Containers/MainContainer';
 import MainLayout from '@Containers/MainLayout';
 import useTeacherList from './services';
 import TeacherItem from '@Components/TeacherItem';
+import MainLoading from '@Components/MainLoading';
 
 export default function TeacherListScreen(nav: NativeStackScreenProps<any>) {
   const {navigation} = nav;
-  const {teacherList} = useTeacherList();
+  const {teacherList, isLoading} = useTeacherList();
   return (
     <MainContainer>
       <MainLayout
-        backgroundColor={Colors.primary}
         title="Danh sách giảng viên"
         navigation={navigation}
         statusBarColor={Colors.secondary}>
-        {teacherList.map(item => {
-          return <TeacherItem data={item} key={item.id} />;
-        })}
+        {isLoading ? (
+          <MainLoading />
+        ) : (
+          teacherList.map(item => {
+            return <TeacherItem data={item} key={item.id} />;
+          })
+        )}
       </MainLayout>
     </MainContainer>
   );

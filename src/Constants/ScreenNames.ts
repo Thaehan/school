@@ -8,4 +8,6 @@ export default {
   Splash: 'SplashScreen',
   TeacherList: 'TeacherListScreen',
   TopicList: 'TopicListScreen',
+  TeacherDetail: 'TeacherDetailScreen',
+  UpdateAccount: 'UpdateAcountScreen',
 };

@@ -1,15 +1,11 @@
-import {Keyboard, SafeAreaView, StyleSheet, TextInput} from 'react-native';
-import {Button, View, Text, Image, Assets} from 'react-native-ui-lib';
-import {useDispatch, useSelector} from 'react-redux';
+import {Keyboard} from 'react-native';
+import {View, Text} from 'react-native-ui-lib';
 import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {TouchableWithoutFeedback} from 'react-native';
 
 import SvgXml, {LogoIcon} from '@Components/SvgXml';
-import {IRootState} from '@Store/configureStore';
-import {fontFamilies} from '@Themes/Fonts';
-import ScreenNames from '@Constants/ScreenNames';
 import MainContainer from '@Containers/MainContainer';
 import InputField from '@Components/InputField';
 import PrimaryButton from '@Components/PrimaryButton';
