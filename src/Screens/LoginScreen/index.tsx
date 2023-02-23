@@ -1,9 +1,8 @@
 import {Keyboard} from 'react-native';
 import {View, Text} from 'react-native-ui-lib';
-import {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {TouchableWithoutFeedback} from 'react-native';
+import React from 'react';
 
 import SvgXml, {LogoIcon} from '@Components/SvgXml';
 import MainContainer from '@Containers/MainContainer';
@@ -33,7 +32,7 @@ export default function LoginScreen(nav: NativeStackScreenProps<any>) {
         <View height="35%" center>
           <SvgXml xml={LogoIcon} />
           <Text primarySemiBold primary marginT-sm xxl>
-            EduOne
+            School
           </Text>
         </View>
       </TouchableWithoutFeedback>
@@ -64,7 +63,7 @@ export default function LoginScreen(nav: NativeStackScreenProps<any>) {
           />
           <View row center padding-xss marginT-40>
             <Text black1 primarySemiBold>
-              {`Nếu chưa có tài khoản, vui lòng `}
+              {'Nếu chưa có tài khoản, vui lòng '}
             </Text>
             <PrimaryButton
               label="đăng ký"
@@ -81,7 +80,7 @@ export default function LoginScreen(nav: NativeStackScreenProps<any>) {
           />
           <View row center padding-xs marginT-60>
             <Text black1 primaryRegular>
-              {`Hotline hỗ trợ `}
+              {'Hotline hỗ trợ '}
             </Text>
             <PrimaryButton
               label="1900 6888"

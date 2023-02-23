@@ -5,11 +5,11 @@ export default StyleSheet.create({
   boxShadow: {
     shadowColor: Colors.grey10,
     shadowOffset: {
-      width: -5,
-      height: -5,
+      width: 6,
+      height: 7,
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.7,
     shadowRadius: 3.84,
-    elevation: 2,
+    elevation: 3,
   },
 });

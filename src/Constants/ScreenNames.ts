@@ -9,5 +9,6 @@ export default {
   TeacherList: 'TeacherListScreen',
   TopicList: 'TopicListScreen',
   TeacherDetail: 'TeacherDetailScreen',
+  TopicDetail: 'TopicDetailScreen',
   UpdateAccount: 'UpdateAcountScreen',
 };
