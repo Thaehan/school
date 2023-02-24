@@ -1,11 +1,11 @@
-import {useEffect, useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {Alert} from 'react-native';
-import {} from 'react-native-ui-lib';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Alert } from 'react-native';
+import { } from 'react-native-ui-lib';
 
 import ScreenNames from '@Constants/ScreenNames';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {setLoading} from '@Store/Reducers/loadingSlice';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { setLoading } from '@Store/Reducers/loadingSlice';
 
 export default function useLogin(navigation: NativeStackScreenProps<any>) {
   const dispatch = useDispatch();
@@ -32,6 +32,9 @@ export default function useLogin(navigation: NativeStackScreenProps<any>) {
   };
 
   const handleRegister = () => {
+    navigation.navigation.replace(ScreenNames.Register, {
+      testParams: true,
+    });
     console.log('register');
   };
 
@@ -60,6 +63,6 @@ export default function useLogin(navigation: NativeStackScreenProps<any>) {
     handleForget,
     handleRegister,
     handleGuest,
-    handleHotline,
+    handleHotline
   };
 }

@@ -1,6 +1,7 @@
 export default {
   Home: 'HomeScreen',
   Login: 'LoginScreen',
+  Register:'RegisterScreen',
   Checkin: 'CheckinScreen',
   CheckinHistory: 'CheckinHistoryScreen',
   Account: 'AccountScreen',
