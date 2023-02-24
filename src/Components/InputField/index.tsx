@@ -1,4 +1,4 @@
-import {View, Colors} from 'react-native-ui-lib';
+import {View, Text, Colors} from 'react-native-ui-lib';
 import {TextInput, TextInputProps, StyleProp, ViewStyle} from 'react-native';
 import React from 'react';
 
@@ -18,6 +18,8 @@ interface IInputField extends TextInputProps {
   onCloseSuggestion?: () => void;
   disabledBoxShadow?: boolean;
   labelStyle?: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
+  showLabel?: boolean;
 }
 
 export default function InputField({
@@ -26,29 +28,40 @@ export default function InputField({
   onChangeText,
   borderRadius,
   disabledBoxShadow,
+  containerStyle = {},
+  showLabel = false,
 }: IInputField) {
   return (
-    <View
-      centerV
-      marginV-10
-      marginH-16
-      paddingV-5
-      style={[
-        {
-          backgroundColor: Colors.white,
-          shadowOpacity: 10,
-          borderRadius: borderRadius ? borderRadius : 50,
-        },
-        !disabledBoxShadow && shadowBox.boxShadow,
-      ]}>
-      <TextInput
-        onChangeText={onChangeText}
-        secureTextEntry={isPassword}
-        style={styles.textField}
-        placeholder={label}
-        placeholderTextColor={Colors.secondary}
-        clearButtonMode="always"
-      />
-    </View>
+    <>
+      {showLabel && (
+        <Text primarySemiBold black marginL-8>
+          {label}
+        </Text>
+      )}
+      <View
+        centerV
+        marginT-4
+        marginB-12
+        marginH-16
+        paddingV-5
+        style={[
+          {
+            backgroundColor: Colors.white,
+            shadowOpacity: 10,
+            borderRadius: borderRadius ? borderRadius : 50,
+          },
+          !disabledBoxShadow && shadowBox.boxShadow,
+          containerStyle,
+        ]}>
+        <TextInput
+          onChangeText={onChangeText}
+          secureTextEntry={isPassword}
+          style={styles.textField}
+          placeholder={label}
+          placeholderTextColor={Colors.secondary}
+          clearButtonMode="always"
+        />
+      </View>
+    </>
   );
 }

@@ -29,7 +29,8 @@ export default function PrimaryButton({
         primaryRegular
         style={[
           {color: textColor ? textColor : 'white'},
-          textStyle ? textStyle : styles.text,
+          styles.text,
+          textStyle ? textStyle : {},
         ]}>
         {label}
       </Text>
