@@ -18,7 +18,6 @@ export default function useTopicList(nav: NativeStackScreenProps<any>) {
   };
 
   const handleScroll = (event: any) => {
-    console.log(event);
     const layout = {
       duration: 100,
       create: {
