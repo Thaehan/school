@@ -30,7 +30,9 @@ export default function InputField({
   disabledBoxShadow,
   containerStyle = {},
   showLabel = false,
+  numberOfLines,
 }: IInputField) {
+  console.log(label, numberOfLines);
   return (
     <>
       {showLabel && (
@@ -53,14 +55,29 @@ export default function InputField({
           !disabledBoxShadow && shadowBox.boxShadow,
           containerStyle,
         ]}>
-        <TextInput
-          onChangeText={onChangeText}
-          secureTextEntry={isPassword}
-          style={styles.textField}
-          placeholder={label}
-          placeholderTextColor={Colors.secondary}
-          clearButtonMode="always"
-        />
+        {numberOfLines ? (
+          <TextInput
+            multiline
+            textAlignVertical="top"
+            numberOfLines={numberOfLines}
+            onChangeText={onChangeText}
+            secureTextEntry={isPassword}
+            style={styles.textField}
+            placeholder={label}
+            placeholderTextColor={Colors.secondary}
+            clearButtonMode="always"
+          />
+        ) : (
+          <TextInput
+            onChangeText={onChangeText}
+            secureTextEntry={isPassword}
+            style={styles.textField}
+            placeholder={label}
+            placeholderTextColor={Colors.secondary}
+            clearButtonMode="always"
+            textAlignVertical="top"
+          />
+        )}
       </View>
     </>
   );

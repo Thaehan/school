@@ -6,56 +6,42 @@ import MainLayout from '@Containers/MainLayout';
 import MainContainer from '@Containers/MainContainer';
 import InputField from '@Components/InputField';
 import styles from './styles';
-import DatePicker from '@Components/DatePicker';
-import useUpdateAccount from './services';
+import useRegisterTopic from './services';
 import PrimaryButton from '@Components/PrimaryButton';
 
-export default function UpdateAccountScreen(nav: NativeStackScreenProps<any>) {
+export default function RegisterTopicScreen(nav: NativeStackScreenProps<any>) {
   const {navigation} = nav;
-  const {birthday, setBirthday, handleUpdate} = useUpdateAccount(nav);
+  const {title, content, setTitle, setContent, handleRegister} =
+    useRegisterTopic(nav);
 
   return (
     <MainContainer>
       <MainLayout
-        title="Cập nhật thông tin"
+        title="Đăng ký đề tài"
         navigation={navigation}
         statusBarColor={Colors.secondary}>
         <InputField
-          label="Họ"
+          label="Đề tài"
           containerStyle={styles.nameInput}
           showLabel
           disabledBoxShadow
+          value={title}
+          onChangeText={text => setTitle(text)}
         />
         <InputField
-          label="Tên"
+          label="Chi tiết"
           containerStyle={styles.nameInput}
           showLabel
           disabledBoxShadow
-        />
-        <InputField
-          label="Giới tính"
-          containerStyle={styles.nameInput}
-          showLabel
-          disabledBoxShadow
-        />
-        <DatePicker
-          label="Ngày sinh"
-          mode="date"
-          onChangeValue={date => setBirthday(date)}
-          value={birthday}
-          showLabel
+          value={content}
+          onChangeText={text => setContent(text)}
+          numberOfLines={20}
         />
 
-        <InputField
-          label="Địa chỉ"
-          containerStyle={styles.nameInput}
-          showLabel
-          disabledBoxShadow
-        />
         <PrimaryButton
           textStyle={styles.updateText}
-          label="Cập nhật thông tin"
-          onPress={handleUpdate}
+          label="Xác nhận đăng ký"
+          onPress={handleRegister}
           containerStyle={styles.updateButton}
         />
       </MainLayout>

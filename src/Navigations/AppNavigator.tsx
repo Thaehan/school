@@ -16,6 +16,7 @@ import TeacherDetailScreen from '@Screens/TeacherDetailScreen';
 import UpdateAccountScreen from '@Screens/UpdateAccountScreen';
 import RegisterScreen from '@Screens/RegisterScreen';
 import TopicDetailScreen from '@Screens/TopicDetailScreen';
+import RegisterTopicScreen from '@Screens/RegisterTopicScreen';
 
 const MainStack = createNativeStackNavigator();
 
@@ -57,6 +58,10 @@ const MainScreenStack = () => {
       <MainStack.Screen
         name={ScreenNames.TopicDetail}
         component={TopicDetailScreen}
+      />
+      <MainStack.Screen
+        name={ScreenNames.RegisterTopic}
+        component={RegisterTopicScreen}
       />
     </MainStack.Navigator>
   );

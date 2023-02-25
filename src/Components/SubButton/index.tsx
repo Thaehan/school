@@ -2,20 +2,25 @@ import {View, Text, TouchableOpacity, Colors} from 'react-native-ui-lib';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 
-import SvgXml, {LogoutIcon} from '@Components/SvgXml';
+import SvgXml, {LogoutIcon, RegisterTopic} from '@Components/SvgXml';
 
 export default function SubButton({
   onPress,
   showTitle = false,
   title,
   backgroundColor,
+  type,
 }: {
   onPress?: () => void;
   showTitle?: boolean;
   title?: string;
   backgroundColor?: string;
+  type: 'register' | 'update';
 }) {
   const renderIcon = () => {
+    if (type === 'register') {
+      return <SvgXml xml={RegisterTopic} />;
+    }
     return <SvgXml xml={LogoutIcon} />;
   };
 
@@ -24,11 +29,13 @@ export default function SubButton({
       //@ts-expect-error
       shadow>
       <TouchableOpacity
-        padding-18
         backgroundColor={backgroundColor ? backgroundColor : Colors.primary}
         spread
         center
-        style={styles.bottomButton}
+        style={[
+          styles.bottomButton,
+          type === 'register' ? styles.rec : styles.circle,
+        ]}
         onPress={() => {
           if (onPress) {
             onPress();
@@ -36,7 +43,11 @@ export default function SubButton({
         }}>
         {renderIcon()}
         {showTitle && title !== undefined && (
-          <Text center marginL-5 color={Colors.blue7} ldRegular>
+          <Text
+            center
+            marginL-5
+            color={type === 'register' ? 'white' : Colors.blue7}
+            primaryRegular>
             {title}
           </Text>
         )}
@@ -51,7 +62,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 42,
     right: 16,
-    borderRadius: 50,
     shadowColor: Colors.gray3,
+  },
+  circle: {
+    borderRadius: 50,
+    padding: 18,
+  },
+  rec: {
+    padding: 12,
+    borderRadius: 8,
   },
 });

@@ -19,6 +19,7 @@ export default function MainLayout({
   padding,
   paddingB,
   paddingT,
+  onScroll,
   isFlatList = false,
 }: {
   right?: any;
@@ -36,6 +37,7 @@ export default function MainLayout({
   paddingT?: number;
   padding?: number;
   isFlatList?: boolean;
+  onScroll?: (event: any) => void;
 }) {
   return (
     <View
@@ -99,7 +101,10 @@ export default function MainLayout({
         {isFlatList ? (
           children
         ) : (
-          <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false}>
+          <ScrollView
+            nestedScrollEnabled
+            showsVerticalScrollIndicator={false}
+            onScroll={onScroll}>
             {children}
           </ScrollView>
         )}

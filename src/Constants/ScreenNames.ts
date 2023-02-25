@@ -1,7 +1,7 @@
 export default {
   Home: 'HomeScreen',
   Login: 'LoginScreen',
-  Register:'RegisterScreen',
+  Register: 'RegisterScreen',
   Checkin: 'CheckinScreen',
   CheckinHistory: 'CheckinHistoryScreen',
   Account: 'AccountScreen',
@@ -12,4 +12,5 @@ export default {
   TeacherDetail: 'TeacherDetailScreen',
   TopicDetail: 'TopicDetailScreen',
   UpdateAccount: 'UpdateAcountScreen',
+  RegisterTopic: 'RegisterTopicScreen',
 };

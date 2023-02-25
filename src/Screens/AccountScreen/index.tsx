@@ -20,7 +20,7 @@ export default function AccountScreen(nav: NativeStackScreenProps<any>) {
   return (
     <MainContainer>
       <MainLayout
-        subButton={<SubButton onPress={onPressLogout} />}
+        subButton={<SubButton type="update" onPress={onPressLogout} />}
         hideBackButton={route?.params?.hideBackButton}
         title={translate('home.Account')}
         navigation={navigation}>
@@ -44,7 +44,7 @@ export default function AccountScreen(nav: NativeStackScreenProps<any>) {
                   //@ts-expect-error
                   radius={60}>
                   <Text primarySemiBold md white>
-                    Đã chọn đề tài
+                    Đã đăng ký đề tài
                   </Text>
                 </View>
               ) : (
@@ -56,7 +56,7 @@ export default function AccountScreen(nav: NativeStackScreenProps<any>) {
                   //@ts-expect-error
                   radius={60}>
                   <Text primarySemiBold md white>
-                    Chưa có đề tài
+                    Chưa đăng ký đề tài
                   </Text>
                 </View>
               )}

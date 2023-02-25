@@ -1,15 +1,10 @@
 import {useState} from 'react';
 
-import {IAdminInformation} from '@Types/IAdminInformation';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ShowMessage} from '@Utils/flashMessage';
 
-export default function useUpdateAccount(
-  nav: NativeStackScreenProps<any>,
-  params?: IAdminInformation,
-) {
+export default function useUpdateAccount(nav: NativeStackScreenProps<any>) {
   const {navigation} = nav;
-  console.log(params);
   const [firstname, setFirstname] = useState<string>('');
   const [lastname, setLastname] = useState<string>('');
   // const [gender, setGender] = useState<Record<string, string>>()
