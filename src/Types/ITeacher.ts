@@ -10,4 +10,5 @@ export interface ITeacher {
   mainMajor?: string;
   majors?: string[];
   subjects?: string[];
+  avatar?: string;
 }

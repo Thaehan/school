@@ -49,12 +49,12 @@ export default function LoginScreen(nav: NativeStackScreenProps<any>) {
             borderRadius={15}
             onChangeText={(text: string) => setPassword(text)}
           />
-          <PrimaryButton
+          {/* <PrimaryButton
             label="Quên mật khẩu?"
             onPress={handleForget}
             containerStyle={styles.forgetButton}
             textStyle={styles.forGetButtonText}
-          />
+          /> */}
           <PrimaryButton
             label="Đăng nhập"
             onPress={handleLogin}
@@ -72,14 +72,14 @@ export default function LoginScreen(nav: NativeStackScreenProps<any>) {
               textStyle={styles.registerButtonText}
             />
           </View>
-          <PrimaryButton
+          {/* <PrimaryButton
             label="Đăng nhập với tư cách tài khoản khách"
             onPress={handleGuest}
             containerStyle={styles.guestButton}
             textStyle={styles.guestButtonText}
-          />
+          /> */}
           <View row center padding-xs marginT-60>
-            <Text black1 primaryRegular>
+            {/* <Text black1 primaryRegular>
               {'Hotline hỗ trợ '}
             </Text>
             <PrimaryButton
@@ -87,7 +87,7 @@ export default function LoginScreen(nav: NativeStackScreenProps<any>) {
               onPress={handleHotline}
               containerStyle={styles.hotlineButton}
               textStyle={styles.hotlineButtonText}
-            />
+            /> */}
           </View>
         </View>
       </TouchableWithoutFeedback>

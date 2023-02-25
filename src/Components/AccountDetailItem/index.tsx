@@ -16,6 +16,10 @@ export default function AccountDetailItem({
     gender: 'Giới tính',
     nation: 'Quốc tịch',
     address: 'Đia chỉ',
+    email: 'Email',
+    phoneNumber: 'Số điện thoại',
+    mainMajor: 'Chuyên ngành',
+    teacherId: 'Mã giảng viên',
   };
 
   return (
@@ -24,7 +28,7 @@ export default function AccountDetailItem({
         {`${labels[label]}:`}
       </Text>
       <Text primaryRegular md>
-        {label == 'dateOfBirth' ? moment(value).format('DD-MM-YYYY') : value}
+        {label === 'dateOfBirth' ? moment(value).format('DD-MM-YYYY') : value}
       </Text>
     </View>
   );

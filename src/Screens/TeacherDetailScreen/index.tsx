@@ -1,12 +1,17 @@
-import {Text, Colors} from 'react-native-ui-lib';
+import {Text, Colors, Image, View} from 'react-native-ui-lib';
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import MainLayout from '@Containers/MainLayout';
 import MainContainer from '@Containers/MainContainer';
+import useTeacherDetail from './services';
+import AccountDetailItem from '@Components/AccountDetailItem';
+import MainLoading from '@Components/MainLoading';
 
 export default function TeacherDetailScreen(nav: NativeStackScreenProps<any>) {
-  const {route, navigation} = nav;
+  const {navigation} = nav;
+
+  const {teacherData, isLoading} = useTeacherDetail(nav);
 
   return (
     <MainContainer>
@@ -14,7 +19,34 @@ export default function TeacherDetailScreen(nav: NativeStackScreenProps<any>) {
         title="Chi tiết giảng viên"
         navigation={navigation}
         statusBarColor={Colors.secondary}>
-        <Text>{route.params ? route.params.id : 'Screen'}</Text>
+        {isLoading ? (
+          <MainLoading />
+        ) : (
+          <>
+            <View centerH paddingV-8>
+              <Image
+                assetGroup="main"
+                assetName={'defaultAvatar'}
+                height={60}
+                width={60}
+              />
+              <Text
+                marginT-6
+                primarySemiBold
+                xl>{`${teacherData?.firstName} ${teacherData?.lastName}`}</Text>
+            </View>
+            {Object.entries(teacherData).map(([label, value]) => {
+              if (
+                label !== 'firstName' &&
+                label !== 'lastName' &&
+                label !== 'id' &&
+                typeof value === 'string'
+              ) {
+                return <AccountDetailItem label={label} value={value ?? ''} />;
+              }
+            })}
+          </>
+        )}
       </MainLayout>
     </MainContainer>
   );
