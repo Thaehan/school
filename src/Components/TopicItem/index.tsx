@@ -13,7 +13,7 @@ export default function TopicItem({data}: {data: ITopic}) {
 
   const navigateToTopicDetail = () => {
     navigation.dispatch(
-      StackActions.push(ScreenNames.TopicDetail, {id: data.id}),
+      StackActions.push(ScreenNames.TopicDetail, {data: data}),
     );
   };
   return (
