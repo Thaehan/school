@@ -7,4 +7,5 @@ export interface IAdminInformation {
   major?: string;
   nation?: string;
   address?: string;
+  selectedTopic?: string;
 }

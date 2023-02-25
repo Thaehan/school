@@ -1,4 +1,4 @@
-import {View, Image} from 'react-native-ui-lib';
+import {View, Image, Text, Colors} from 'react-native-ui-lib';
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
@@ -32,13 +32,45 @@ export default function AccountScreen(nav: NativeStackScreenProps<any>) {
                 assetName="defaultAvatar"
                 height={60}
                 width={60}
+                marginB-20
               />
+              {administratorInformation.selectedTopic &&
+              administratorInformation.selectedTopic !== '' ? (
+                <View
+                  backgroundColor={Colors.green1}
+                  paddingH-16
+                  paddingV-4
+                  center
+                  //@ts-expect-error
+                  radius={60}>
+                  <Text primarySemiBold md white>
+                    Đã chọn đề tài
+                  </Text>
+                </View>
+              ) : (
+                <View
+                  backgroundColor={Colors.red1}
+                  paddingH-16
+                  paddingV-4
+                  center
+                  //@ts-expect-error
+                  radius={60}>
+                  <Text primarySemiBold md white>
+                    Chưa có đề tài
+                  </Text>
+                </View>
+              )}
             </View>
             <View>
               {Object.entries(administratorInformation).map(([key, value]) => {
                 console.log('Info', key, value);
                 return (
-                  <AccountDetailItem key={key} label={key} value={value} />
+                  <AccountDetailItem
+                    multiLines
+                    key={key}
+                    label={key}
+                    value={value}
+                  />
                 );
               })}
             </View>

@@ -36,12 +36,7 @@ export default function TeacherDetailScreen(nav: NativeStackScreenProps<any>) {
                 xl>{`${teacherData?.firstName} ${teacherData?.lastName}`}</Text>
             </View>
             {Object.entries(teacherData).map(([label, value]) => {
-              if (
-                label !== 'firstName' &&
-                label !== 'lastName' &&
-                label !== 'id' &&
-                typeof value === 'string'
-              ) {
+              if (typeof value === 'string') {
                 return <AccountDetailItem label={label} value={value ?? ''} />;
               }
             })}

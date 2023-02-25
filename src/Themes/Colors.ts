@@ -12,5 +12,6 @@ Colors.loadColors({
   gray2: '#949494',
   gray3: '#E3DBF5',
   gray4: '#8C8D8E',
-  green1: '#26BC00',
+  green1: '#47CC1F',
+  red1: '#E33A10',
 });

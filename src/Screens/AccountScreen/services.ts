@@ -6,6 +6,7 @@ import {IAdminInformation} from '@Types/IAdminInformation';
 import ScreenNames from '@Constants/ScreenNames';
 import {useDispatch} from 'react-redux';
 import {setLoading} from '@Store/Reducers/loadingSlice';
+import userData from '@Assets/Data/user.json';
 
 export default function useAccount(nav: NativeStackScreenProps<any>) {
   const {navigation, route} = nav;
@@ -13,13 +14,7 @@ export default function useAccount(nav: NativeStackScreenProps<any>) {
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [administratorInformation, setAdministratorInformation] =
-    useState<IAdminInformation>({
-      name: 'Phạm Tiến Đạt',
-      gender: 'Male',
-      dateOfBirth: new Date(0).toISOString(),
-      nation: 'VietNam',
-      address: 'Cầu Diễn, Bắc Từ Liêm, Hà Nội',
-    });
+    useState<IAdminInformation>(userData);
 
   const logoutButtons: AlertButton[] = [
     {

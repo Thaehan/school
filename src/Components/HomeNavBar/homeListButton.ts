@@ -3,12 +3,12 @@ import {translate} from '@Languages/Translate';
 import {IHomeListButton} from '@Types/IHomeListButton';
 
 const homeListButton: IHomeListButton[] = [
-  {
-    id: 1,
-    name: translate('home.Checkin'),
-    assetName: 'checkin',
-    screenName: ScreenNames.Checkin,
-  },
+  // {
+  //   id: 1,
+  //   name: translate('home.Checkin'),
+  //   assetName: 'checkin',
+  //   screenName: ScreenNames.Checkin,
+  // },
   {
     id: 2,
     name: translate('home.TeacherList'),
