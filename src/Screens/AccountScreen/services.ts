@@ -23,6 +23,9 @@ export default function useAccount(nav: NativeStackScreenProps<any>) {
 
   const logoutButtons: AlertButton[] = [
     {
+      text: 'Hủy',
+    },
+    {
       text: 'Đăng xuất',
       onPress: () => {
         dispatch(setLoading(true));
@@ -33,9 +36,6 @@ export default function useAccount(nav: NativeStackScreenProps<any>) {
           dispatch(setLoading(false));
         }, 500);
       },
-    },
-    {
-      text: 'Hủy',
     },
   ];
 

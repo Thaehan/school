@@ -15,7 +15,7 @@ export default function AccountDetailItem({
     dateOfBirth: 'Ngày sinh',
     gender: 'Giới tính',
     nation: 'Quốc tịch',
-    address: 'Đại chỉ',
+    address: 'Đia chỉ',
   };
 
   return (

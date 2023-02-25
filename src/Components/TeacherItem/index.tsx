@@ -20,12 +20,12 @@ export default function TeacherItem({data}: {data: ITeacher}) {
       row
       flex
       centerV
-      paddingH-16
       paddingV-8
       marginB-8
       radius={10}
-      backgroundColor={Colors.primary}
-      onPress={navigateToTeacherDetail}>
+      onPress={navigateToTeacherDetail}
+      borderB={0.7}
+      bbColor={Colors.gray3}>
       <View centerV width={'25%'}>
         <Image
           assetGroup="main"
@@ -38,17 +38,17 @@ export default function TeacherItem({data}: {data: ITeacher}) {
         <Text
           primarySemiBold
           lg
-          white>{`${data.firstName} ${data.lastName}`}</Text>
-        <Text primaryRegular md white>
+          black>{`${data.firstName} ${data.lastName}`}</Text>
+        <Text primaryRegular md black>
           {`${translate('business.TeacherId')}: ${data.teacherId}`}
         </Text>
-        <Text primaryRegular md white>
+        <Text primaryRegular md black>
           {`${translate('business.MainMajor')}: ${data.mainMajor}`}
         </Text>
-        <Text primaryRegular md white>
+        <Text primaryRegular md black>
           {`${translate('business.PhoneNumber')}: ${data.phoneNumber}`}
         </Text>
-        <Text primaryRegular md white>
+        <Text primaryRegular md black>
           {`${translate('business.Email')}: ${data.email}`}
         </Text>
       </View>
