@@ -18,6 +18,9 @@
 - Ấn OK và chờ install
 <img width="992" alt="image" src="https://user-images.githubusercontent.com/62579790/221629259-e6579082-20cc-45c9-9bd7-9e4c3b2acf85.png">
 
+- Tải xuống và giải nén source code, mở thư mục source code.
+- Mở cmd tại thư mục này gõ *yarn install*.
 
 # Hướng dẫn sử dụng các chức năng với package.json 🔥:
-- 
+- *yarn android*: Chạy ứng dụng debug trên máy ảo hoặc nếu kết nối với máy thật qua dây hoặc wifi debug thì có thể chạy. (Lưu ý: Nếu chạy trên máy ảo thì cần phải tạo máy ảo theo hướng dẫn [Emulator](https://developer.android.com/studio/run/managing-avds).
+- *yarn build-apk*: Build file apk.
