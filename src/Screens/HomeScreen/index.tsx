@@ -8,6 +8,7 @@ import HomeNavBar from '@Components/HomeNavBar';
 import CardView from '@Components/CardView';
 import {translate} from '@Languages/Translate';
 import styles from './styles';
+import userData from '@Assets/Data/user.json';
 
 export default function HomeScreen(nav: NativeStackScreenProps<any>) {
   return (
@@ -35,10 +36,10 @@ export default function HomeScreen(nav: NativeStackScreenProps<any>) {
             </View>
             <View paddingL-25>
               <Text primarySemiBold white>
-                Bùi Quang Hiệu
+                {userData.name}
               </Text>
               <Text primaryRegular white>
-                0123456789
+                {userData.phoneNumber}
               </Text>
             </View>
           </View>
