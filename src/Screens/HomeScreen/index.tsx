@@ -35,7 +35,7 @@ export default function HomeScreen(nav: NativeStackScreenProps<any>) {
             </View>
             <View paddingL-25>
               <Text primarySemiBold white>
-                PHẠM TIẾN ĐẠT
+                Bùi Quang Hiệu
               </Text>
               <Text primaryRegular white>
                 0123456789
