@@ -2,9 +2,9 @@ import {useEffect, useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {LayoutAnimation} from 'react-native';
 
-import mockList from '@Assets/Data/topicList.json';
 import {ITopic} from '@Types/ITopic';
 import ScreenNames from '@Constants/ScreenNames';
+import {getTopics} from '@Api/TopicApi';
 
 export default function useTopicList(nav: NativeStackScreenProps<any>) {
   const {navigation} = nav;
@@ -45,7 +45,9 @@ export default function useTopicList(nav: NativeStackScreenProps<any>) {
   const getTopicList = async () => {
     setIsLoading(true);
     try {
-      setTopicList(mockList);
+      const res = await getTopics();
+      console.log(res);
+      setTopicList(res);
     } catch (error) {
       console.error(error);
     } finally {
@@ -54,13 +56,9 @@ export default function useTopicList(nav: NativeStackScreenProps<any>) {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    const timeout = setTimeout(() => {
-      getTopicList();
-    }, 500);
-
-    return () => clearTimeout(timeout);
+    getTopicList();
   }, []);
+
   return {
     isLoading,
     setIsLoading,

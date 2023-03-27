@@ -24,11 +24,11 @@
     "TopicList": "Danh sách đề tài"
   },
   "business": {
-    "TeacherId": "Mã giảng viên",
-    "PhoneNumber": "Số điện thoại",
+    "teacher_code": "Mã giảng viên",
+    "phone_number": "Số điện thoại",
     "Email": "E-mail",
-    "DateOfBirth": "Ngày sinh",
-    "MainMajor": "Chuyên ngành"
+    "date_of_birth": "Ngày sinh",
+    "MainMajor": "Môn học giảng dạy"
   },
   "checkin": {
     "History": "Xem lịch sử"

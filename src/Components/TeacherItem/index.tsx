@@ -11,7 +11,7 @@ export default function TeacherItem({data}: {data: ITeacher}) {
 
   const navigateToTeacherDetail = () => {
     navigation.dispatch(
-      StackActions.push(ScreenNames.TeacherDetail, {id: data.id}),
+      StackActions.push(ScreenNames.TeacherDetail, {data: data}),
     );
   };
 
@@ -38,15 +38,12 @@ export default function TeacherItem({data}: {data: ITeacher}) {
         <Text
           primarySemiBold
           lg
-          black>{`${data.firstName} ${data.lastName}`}</Text>
+          black>{`${data.name?.first_name} ${data.name?.last_name}`}</Text>
         <Text primaryRegular md black>
-          {`${translate('business.TeacherId')}: ${data.teacherId}`}
+          {`${translate('business.teacher_code')}: ${data.teacher_code}`}
         </Text>
         <Text primaryRegular md black>
-          {`${translate('business.MainMajor')}: ${data.mainMajor}`}
-        </Text>
-        <Text primaryRegular md black>
-          {`${translate('business.PhoneNumber')}: ${data.phoneNumber}`}
+          {`${translate('business.phone_number')}: ${data.phone_number}`}
         </Text>
         <Text primaryRegular md black>
           {`${translate('business.Email')}: ${data.email}`}

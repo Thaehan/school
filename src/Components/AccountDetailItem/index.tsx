@@ -12,17 +12,20 @@ export default function AccountDetailItem({
   value: string;
   multiLines?: boolean;
 }) {
+  console.log(label, value);
   const labels: Record<string, string> = {
     name: 'Họ và tên',
-    dateOfBirth: 'Ngày sinh',
+    date_of_birth: 'Ngày sinh',
     gender: 'Giới tính',
-    nation: 'Quốc tịch',
     address: 'Đia chỉ',
     email: 'Email',
-    phoneNumber: 'Số điện thoại',
-    mainMajor: 'Chuyên ngành',
-    teacherId: 'Mã giảng viên',
-    selectedTopic: 'Đề tài đã chọn',
+    phone_number: 'Số điện thoại',
+    teacher_code: 'Mã giảng viên',
+    student_code: 'Mã sinh viên',
+    specialization: 'Chuyên ngành',
+    academic_year: 'Niên khoá',
+    // selected_topic_id: 'Đề tài đã chọn',
+    main_course: 'Môn học giảng dạy',
   };
 
   if (!labels[label] || value === '') {
@@ -38,14 +41,16 @@ export default function AccountDetailItem({
         //@ts-expect-error
         <View maxWidth={'65%'}>
           <Text primaryRegular md multiLines>
-            {label === 'dateOfBirth'
+            {label === 'date_of_birth'
               ? moment(value).format('DD-MM-YYYY')
               : value}
           </Text>
         </View>
       ) : (
         <Text primaryRegular md>
-          {label === 'dateOfBirth' ? moment(value).format('DD-MM-YYYY') : value}
+          {label === 'date_of_birth'
+            ? moment(value).format('DD-MM-YYYY')
+            : value}
         </Text>
       )}
     </View>

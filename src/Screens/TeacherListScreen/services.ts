@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 
-import mockList from '@Assets/Data/teacherList.json';
 import {ITeacher} from '@Types/ITeacher';
+import {getTeachers} from '@Api/TeacherApi';
 
 export default function useTeacherList() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -10,7 +10,9 @@ export default function useTeacherList() {
   const getTeacherList = async () => {
     setIsLoading(true);
     try {
-      setTeacherList(mockList);
+      const res = await getTeachers();
+      console.log(res);
+      setTeacherList(res);
     } catch (error) {
       console.error(error);
     } finally {
@@ -19,12 +21,7 @@ export default function useTeacherList() {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    const timeout = setTimeout(() => {
-      getTeacherList();
-    }, 500);
-
-    return () => clearTimeout(timeout);
+    getTeacherList();
   }, []);
 
   return {

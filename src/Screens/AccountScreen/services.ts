@@ -2,19 +2,19 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useEffect, useState} from 'react';
 import {Alert, AlertButton} from 'react-native';
 
-import {IAdminInformation} from '@Types/IAdminInformation';
 import ScreenNames from '@Constants/ScreenNames';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setLoading} from '@Store/Reducers/loadingSlice';
-import userData from '@Assets/Data/user.json';
+import {IRootState} from '@Store/configureStore';
+import {arrayToString, nameObjectToString} from '@Utils/utils';
 
 export default function useAccount(nav: NativeStackScreenProps<any>) {
-  const {navigation, route} = nav;
+  const {navigation} = nav;
   const dispatch = useDispatch();
+  const currentUser = useSelector((state: IRootState) => state.user);
+  const [values, setValues] = useState<Record<string, string>>({});
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [administratorInformation, setAdministratorInformation] =
-    useState<IAdminInformation>(userData);
 
   const logoutButtons: AlertButton[] = [
     {
@@ -47,20 +47,68 @@ export default function useAccount(nav: NativeStackScreenProps<any>) {
     navigation.push(ScreenNames.UpdateAccount);
   };
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsLoading(false);
-    }, 50);
+  const getData = async () => {
+    setIsLoading(true);
+    try {
+      if (currentUser.studentData) {
+        const tempValues: Record<string, string> = {};
+        Object.entries(currentUser.studentData).forEach(([label, value]) => {
+          if (typeof value === 'object') {
+            tempValues[label] = nameObjectToString(value);
+          } else if (typeof value === 'string') {
+            tempValues[label] = value;
+          } else if (typeof value === 'number') {
+            tempValues[label] = value.toString();
+          } else if (
+            label === '__v' ||
+            label === 'updatedAt' ||
+            label === 'createdAt'
+          ) {
+            return;
+          } else {
+            tempValues[label] = arrayToString(value);
+          }
+        });
 
-    return () => clearTimeout(timeout);
-  }, [navigation, route.name]);
+        console.log(tempValues);
+        setValues(tempValues);
+      }
+      if (currentUser.teacherData) {
+        const tempValues: Record<string, string> = {};
+        Object.entries(currentUser.teacherData).forEach(([label, value]) => {
+          if (typeof value === 'object') {
+            tempValues[label] = nameObjectToString(value);
+          } else if (typeof value === 'string') {
+            tempValues[label] = value;
+          } else {
+            tempValues[label] = arrayToString(value);
+          }
+        });
+
+        setValues(tempValues);
+        console.log(tempValues);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const focus = navigation.addListener('focus', () => {
+      getData();
+    });
+
+    return focus;
+  }, [navigation]);
 
   return {
     isLoading,
     setIsLoading,
-    administratorInformation,
-    setAdministratorInformation,
     onPressLogout,
     onPressUpdate,
+    currentUser,
+    values,
   };
 }

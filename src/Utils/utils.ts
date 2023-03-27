@@ -49,3 +49,21 @@ export const getStatusBarHeight = () => {
 
   return 32;
 };
+
+export const arrayToString = (array: string[]) => {
+  let result = '';
+  array.map(item => {
+    result += item + '\n';
+  });
+  return result;
+};
+
+export const nameObjectToString = (name?: {
+  first_name?: string;
+  last_name?: string;
+}) => {
+  if (!name || !name.first_name) {
+    return 'Không xác định';
+  }
+  return name.first_name + ' ' + name.last_name;
+};

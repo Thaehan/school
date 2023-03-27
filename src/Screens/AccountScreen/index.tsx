@@ -7,14 +7,14 @@ import MainLayout from '@Containers/MainLayout';
 import {translate} from '@Languages/Translate';
 import useAccount from './services';
 import MainLoading from '@Components/MainLoading';
-import AccountDetailItem from '@Components/AccountDetailItem';
 import PrimaryButton from '@Components/PrimaryButton';
 import styles from './styles';
 import SubButton from '@Components/SubButton';
+import AccountDetailItem from '@Components/AccountDetailItem';
 
 export default function AccountScreen(nav: NativeStackScreenProps<any>) {
   const {navigation, route} = nav;
-  const {isLoading, administratorInformation, onPressLogout, onPressUpdate} =
+  const {isLoading, onPressLogout, onPressUpdate, currentUser, values} =
     useAccount(nav);
 
   return (
@@ -34,8 +34,7 @@ export default function AccountScreen(nav: NativeStackScreenProps<any>) {
                 width={60}
                 marginB-20
               />
-              {administratorInformation.selectedTopic &&
-              administratorInformation.selectedTopic !== '' ? (
+              {currentUser && currentUser.studentData?.selected_topic_id ? (
                 <View
                   backgroundColor={Colors.green1}
                   paddingH-16
@@ -47,7 +46,7 @@ export default function AccountScreen(nav: NativeStackScreenProps<any>) {
                     Đã đăng ký đề tài
                   </Text>
                 </View>
-              ) : (
+              ) : currentUser.user.role === 'student' ? (
                 <View
                   backgroundColor={Colors.red1}
                   paddingH-16
@@ -59,20 +58,13 @@ export default function AccountScreen(nav: NativeStackScreenProps<any>) {
                     Chưa đăng ký đề tài
                   </Text>
                 </View>
-              )}
+              ) : null}
             </View>
             <View>
-              {Object.entries(administratorInformation).map(([key, value]) => {
-                console.log('Info', key, value);
-                return (
-                  <AccountDetailItem
-                    multiLines
-                    key={key}
-                    label={key}
-                    value={value}
-                  />
-                );
-              })}
+              {Object.entries(values).length !== 0 &&
+                Object.entries(values).map(([key, value]) => {
+                  return <AccountDetailItem label={key} value={value} />;
+                })}
             </View>
             <PrimaryButton
               containerStyle={styles.updateButton}

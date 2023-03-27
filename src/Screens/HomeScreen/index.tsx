@@ -8,12 +8,14 @@ import HomeNavBar from '@Components/HomeNavBar';
 import CardView from '@Components/CardView';
 import {translate} from '@Languages/Translate';
 import styles from './styles';
-import userData from '@Assets/Data/user.json';
+import useHome from './services';
+import {nameObjectToString} from '@Utils/utils';
 
 export default function HomeScreen(nav: NativeStackScreenProps<any>) {
+  const {currentUser} = useHome(nav);
+
   return (
     <MainContainer>
-      {/* <StatusBar backgroundColor={Colors.primary} barStyle="dark-content" /> */}
       <View>
         <ScrollView
           nestedScrollEnabled={true}
@@ -36,10 +38,16 @@ export default function HomeScreen(nav: NativeStackScreenProps<any>) {
             </View>
             <View paddingL-25>
               <Text primarySemiBold white>
-                {userData.name}
+                {nameObjectToString(
+                  currentUser.user.role === 'student'
+                    ? currentUser.studentData?.name
+                    : currentUser.teacherData?.name,
+                )}
               </Text>
               <Text primaryRegular white>
-                {userData.phoneNumber}
+                {currentUser.user.role === 'student'
+                  ? currentUser.studentData?.phone_number
+                  : currentUser.teacherData?.phone_number}
               </Text>
             </View>
           </View>
@@ -53,7 +61,8 @@ export default function HomeScreen(nav: NativeStackScreenProps<any>) {
               //@ts-expect-errors
               radius={15}
               height={300}
-              backgroundColor={Colors.gray1}></View>
+              backgroundColor={Colors.gray1}
+            />
           </CardView>
         </ScrollView>
       </View>

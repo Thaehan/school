@@ -1,15 +1,27 @@
+import {IStudent} from '@Types/IStudent';
+import {ITeacher} from '@Types/ITeacher';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface IUserSlice {
-  username: string;
+  user: {
+    id?: string;
+    username?: string;
+    role?: string;
+  };
   token: string;
-  userId: string;
+  teacherData?: ITeacher;
+  studentData?: IStudent;
 }
 
 const initialState: IUserSlice = {
-  username: '',
+  user: {
+    id: '',
+    username: '',
+    role: '',
+  },
   token: '',
-  userId: '',
+  teacherData: {},
+  studentData: {},
 };
 
 export const userSlice = createSlice({
@@ -17,14 +29,24 @@ export const userSlice = createSlice({
   initialState: initialState,
   reducers: {
     setUser: (state, action: PayloadAction<IUserSlice>) => {
-      state.username = action.payload.username;
-      state.userId = action.payload.userId;
+      state.user = {
+        id: action.payload.user.id,
+        role: action.payload.user.role,
+        username: action.payload.user.username,
+      };
       state.token = action.payload.token;
+      state.studentData = action.payload.studentData;
+      state.teacherData = action.payload.teacherData;
     },
     resetUser: state => {
-      state.username = '';
-      state.userId = '';
+      state.user = {
+        id: '',
+        role: '',
+        username: '',
+      };
       state.token = '';
+      state.studentData = {};
+      state.teacherData = {};
     },
   },
 });

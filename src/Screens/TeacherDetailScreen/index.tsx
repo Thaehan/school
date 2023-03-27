@@ -7,6 +7,7 @@ import MainContainer from '@Containers/MainContainer';
 import useTeacherDetail from './services';
 import AccountDetailItem from '@Components/AccountDetailItem';
 import MainLoading from '@Components/MainLoading';
+import {arrayToString} from '@Utils/utils';
 
 export default function TeacherDetailScreen(nav: NativeStackScreenProps<any>) {
   const {navigation} = nav;
@@ -33,11 +34,19 @@ export default function TeacherDetailScreen(nav: NativeStackScreenProps<any>) {
               <Text
                 marginT-6
                 primarySemiBold
-                xl>{`${teacherData?.firstName} ${teacherData?.lastName}`}</Text>
+                xl>{`${teacherData.name?.first_name} ${teacherData.name?.last_name}`}</Text>
             </View>
             {Object.entries(teacherData).map(([label, value]) => {
               if (typeof value === 'string') {
                 return <AccountDetailItem label={label} value={value ?? ''} />;
+              }
+              if (Array.isArray(value)) {
+                return (
+                  <AccountDetailItem
+                    label={label}
+                    value={arrayToString(value)}
+                  />
+                );
               }
             })}
           </>

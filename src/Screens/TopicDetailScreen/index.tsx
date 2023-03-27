@@ -6,11 +6,12 @@ import moment from 'moment';
 import MainLayout from '@Containers/MainLayout';
 import MainContainer from '@Containers/MainContainer';
 import {ITopic} from '@Types/ITopic';
+import {nameObjectToString} from '@Utils/utils';
 
 export default function TopicDetailScreen(nav: NativeStackScreenProps<any>) {
   const {navigation} = nav;
   //@ts-expect-error
-  const {data}: ITopic = nav.route.params;
+  const {data}: {data: ITopic} = nav.route.params;
 
   return (
     <MainContainer>
@@ -19,12 +20,12 @@ export default function TopicDetailScreen(nav: NativeStackScreenProps<any>) {
         navigation={navigation}
         statusBarColor={Colors.secondary}>
         <Text primarySemiBold xl>
-          {data.title}
+          {data.topic_name}
         </Text>
 
         <View>
           <Text gray2 primaryLight md marginT-6>
-            {`Người tạo: ${data.creator}`}
+            {`Người tạo: ${nameObjectToString(data.creator?.name)}`}
           </Text>
           <Text gray2 primaryLight md>
             {`Thời gian tạo: ${moment(data.createdAt).format(
@@ -32,7 +33,7 @@ export default function TopicDetailScreen(nav: NativeStackScreenProps<any>) {
             )}`}
           </Text>
           <Text black1 primaryRegular md marginT-6>
-            {data.content}
+            {data.detail}
           </Text>
         </View>
       </MainLayout>

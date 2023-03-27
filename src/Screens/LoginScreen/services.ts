@@ -1,29 +1,45 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Alert } from 'react-native';
-import { } from 'react-native-ui-lib';
+import {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {} from 'react-native-ui-lib';
 
 import ScreenNames from '@Constants/ScreenNames';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { setLoading } from '@Store/Reducers/loadingSlice';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {setLoading} from '@Store/Reducers/loadingSlice';
+import {login} from '@Api/AuthApi';
+import {ShowMessage} from '@Utils/flashMessage';
+import {setUser} from '@Store/Reducers/userSlice';
 
-export default function useLogin(navigation: NativeStackScreenProps<any>) {
+export default function useLogin(nav: NativeStackScreenProps<any>) {
+  const {navigation} = nav;
   const dispatch = useDispatch();
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const handleLogin = () => {
-    if (username.length == 0 || password.length == 0) {
-      Alert.alert('Vui lòng nhập đầy đủ tên người dùng và mật khẩu!');
-    } else {
-      dispatch(setLoading(true));
-      setTimeout(() => {
-        navigation.navigation.replace(ScreenNames.MainTab, {
-          testParams: true,
-        });
-        dispatch(setLoading(false));
-      }, 500);
-      console.log('login');
+  const handleLogin = async () => {
+    dispatch(setLoading(true));
+    try {
+      const data: any = await login({username, password});
+
+      console.log(data);
+
+      dispatch(
+        setUser({
+          user: {
+            id: data.user.id,
+            username: data.user.username,
+            role: data.user.role,
+          },
+          token: data.token,
+          studentData: data?.studentData,
+          teacherData: data?.teacherData,
+        }),
+      );
+      dispatch(setLoading(false));
+      navigation.replace(ScreenNames.MainTab);
+    } catch (error) {
+      dispatch(setLoading(false));
+      ShowMessage({message: 'Username or password is incorrect'});
+      console.error(error);
     }
   };
 
@@ -32,7 +48,7 @@ export default function useLogin(navigation: NativeStackScreenProps<any>) {
   };
 
   const handleRegister = () => {
-    navigation.navigation.replace(ScreenNames.Register, {
+    nav.navigation.replace(ScreenNames.Register, {
       testParams: true,
     });
     console.log('register');
@@ -63,6 +79,6 @@ export default function useLogin(navigation: NativeStackScreenProps<any>) {
     handleForget,
     handleRegister,
     handleGuest,
-    handleHotline
+    handleHotline,
   };
 }

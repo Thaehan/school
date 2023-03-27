@@ -5,8 +5,8 @@ import {ShowMessage} from '@Utils/flashMessage';
 
 export default function useUpdateAccount(nav: NativeStackScreenProps<any>) {
   const {navigation} = nav;
-  const [firstname, setFirstname] = useState<string>('');
-  const [lastname, setLastname] = useState<string>('');
+  const [first_name, setfirst_name] = useState<string>('');
+  const [last_name, setlast_name] = useState<string>('');
   // const [gender, setGender] = useState<Record<string, string>>()
   const [address, setAddress] = useState<string>('');
   const [birthday, setBirthday] = useState<Date>(new Date());
@@ -19,10 +19,10 @@ export default function useUpdateAccount(nav: NativeStackScreenProps<any>) {
   return {
     birthday,
     setBirthday,
-    firstname,
-    setFirstname,
-    lastname,
-    setLastname,
+    first_name,
+    setfirst_name,
+    last_name,
+    setlast_name,
     address,
     setAddress,
     handleUpdate,

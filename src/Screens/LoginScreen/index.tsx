@@ -13,18 +13,7 @@ import styles from './styles';
 import {translate} from '@Languages/Translate';
 
 export default function LoginScreen(nav: NativeStackScreenProps<any>) {
-  const {navigation, route} = nav;
-  const {
-    username,
-    setUsername,
-    password,
-    setPassword,
-    handleLogin,
-    handleForget,
-    handleRegister,
-    handleGuest,
-    handleHotline,
-  } = useLogin(nav);
+  const {setUsername, setPassword, handleLogin, handleRegister} = useLogin(nav);
 
   return (
     <MainContainer>
