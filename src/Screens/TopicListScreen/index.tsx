@@ -11,20 +11,30 @@ import SubButton from '@Components/SubButton';
 
 export default function TopicListScreen(nav: NativeStackScreenProps<any>) {
   const {navigation} = nav;
-  const {topicList, isLoading, showButtonTitle, handleScroll, handleRegister} =
-    useTopicList(nav);
+  const {
+    topicList,
+    isLoading,
+    showButtonTitle,
+    handleScroll,
+    handleRegister,
+    currentUser,
+  } = useTopicList(nav);
 
   return (
     <MainContainer>
       <MainLayout
         onScroll={handleScroll}
         subButton={
-          <SubButton
-            title="Đăng ký đề tài"
-            type="register"
-            showTitle={showButtonTitle}
-            onPress={handleRegister}
-          />
+          currentUser &&
+          currentUser.studentData &&
+          !currentUser.studentData?.selected_topic_id ? (
+            <SubButton
+              title="Đăng ký đề tài"
+              type="register"
+              showTitle={showButtonTitle}
+              onPress={handleRegister}
+            />
+          ) : null
         }
         title="Danh sách đề tài"
         navigation={navigation}

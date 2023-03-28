@@ -18,6 +18,8 @@ import SettingInfoIcon from '@Assets/Svg/SettingInfoIcon.svg';
 import QAIcon from '@Assets/Svg/QAIcon.svg';
 import LogoutIcon from '@Assets/Svg/LogoutIcon.svg';
 import RegisterTopic from '@Assets/Svg/RegisterTopic.svg';
+import DropDownU from '@Assets/Svg/DropDownU.svg';
+import DropDownD from '@Assets/Svg/DropDownD.svg';
 
 interface ISVGProps extends SvgProps {
   xml: any;
@@ -28,6 +30,8 @@ export default function SvgXml(props: ISVGProps) {
 }
 
 export {
+  DropDownD,
+  DropDownU,
   RegisterTopic,
   LogoutIcon,
   CalendarIcon,

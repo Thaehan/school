@@ -1,3 +1,4 @@
+import {login} from '@Api/AuthApi';
 import {IStudent} from '@Types/IStudent';
 import {ITeacher} from '@Types/ITeacher';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
@@ -7,6 +8,7 @@ interface IUserSlice {
     id?: string;
     username?: string;
     role?: string;
+    password?: string;
   };
   token: string;
   teacherData?: ITeacher;
@@ -18,6 +20,7 @@ const initialState: IUserSlice = {
     id: '',
     username: '',
     role: '',
+    password: '',
   },
   token: '',
   teacherData: {},
@@ -33,6 +36,7 @@ export const userSlice = createSlice({
         id: action.payload.user.id,
         role: action.payload.user.role,
         username: action.payload.user.username,
+        password: action.payload.user.password,
       };
       state.token = action.payload.token;
       state.studentData = action.payload.studentData;
@@ -43,13 +47,39 @@ export const userSlice = createSlice({
         id: '',
         role: '',
         username: '',
+        password: '',
       };
       state.token = '';
       state.studentData = {};
       state.teacherData = {};
     },
+    refetchUser: state => {
+      if (!state.user.username || !state.user.password) {
+        return;
+      }
+      login({
+        username: state.user.username,
+        password: state.user.password,
+      })
+        .then(data => {
+          setUser({
+            user: {
+              id: data.user.id,
+              username: data.user.username,
+              password: state.user.password,
+              role: data.user.role,
+            },
+            token: data.token,
+            studentData: data?.studentData,
+            teacherData: data?.teacherData,
+          });
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
   },
 });
 
-export const {setUser, resetUser} = userSlice.actions;
+export const {setUser, resetUser, refetchUser} = userSlice.actions;
 export default userSlice.reducer;

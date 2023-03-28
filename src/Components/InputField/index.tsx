@@ -20,6 +20,7 @@ interface IInputField extends TextInputProps {
   labelStyle?: StyleProp<ViewStyle>;
   containerStyle?: StyleProp<ViewStyle>;
   showLabel?: boolean;
+  editable?: boolean;
 }
 
 export default function InputField({
@@ -31,6 +32,7 @@ export default function InputField({
   containerStyle = {},
   showLabel = false,
   numberOfLines,
+  editable,
 }: IInputField) {
   console.log(label, numberOfLines);
   return (
@@ -66,6 +68,7 @@ export default function InputField({
             placeholder={label}
             placeholderTextColor={Colors.secondary}
             clearButtonMode="always"
+            editable={editable}
           />
         ) : (
           <TextInput
@@ -76,6 +79,7 @@ export default function InputField({
             placeholderTextColor={Colors.secondary}
             clearButtonMode="always"
             textAlignVertical="top"
+            editable={editable}
           />
         )}
       </View>

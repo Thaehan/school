@@ -27,6 +27,7 @@ export default function useLogin(nav: NativeStackScreenProps<any>) {
           user: {
             id: data.user.id,
             username: data.user.username,
+            password: password,
             role: data.user.role,
           },
           token: data.token,

@@ -5,16 +5,19 @@ import {LayoutAnimation} from 'react-native';
 import {ITopic} from '@Types/ITopic';
 import ScreenNames from '@Constants/ScreenNames';
 import {getTopics} from '@Api/TopicApi';
+import {useSelector} from 'react-redux';
+import {IRootState} from '@Store/configureStore';
 
 export default function useTopicList(nav: NativeStackScreenProps<any>) {
-  const {navigation} = nav;
+  const {navigation, route} = nav;
+  const currentUser = useSelector((state: IRootState) => state.user);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [topicList, setTopicList] = useState<ITopic[]>([]);
   const [showButtonTitle, setShowButtonTitle] = useState<boolean>(true);
 
   const handleRegister = () => {
-    navigation.push(ScreenNames.RegisterTopic);
+    navigation.push(ScreenNames.RegisterTopic, {data: route.params?.data});
   };
 
   const handleScroll = (event: any) => {
@@ -67,5 +70,6 @@ export default function useTopicList(nav: NativeStackScreenProps<any>) {
     setShowButtonTitle,
     handleScroll,
     handleRegister,
+    currentUser,
   };
 }

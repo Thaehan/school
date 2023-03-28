@@ -103,6 +103,10 @@ export default function useAccount(nav: NativeStackScreenProps<any>) {
     return focus;
   }, [navigation]);
 
+  useEffect(() => {
+    getData();
+  }, [currentUser]);
+
   return {
     isLoading,
     setIsLoading,

@@ -1,18 +1,23 @@
-import {Colors} from 'react-native-ui-lib';
+import {Colors, Text, View} from 'react-native-ui-lib';
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import MainLayout from '@Containers/MainLayout';
 import MainContainer from '@Containers/MainContainer';
-import InputField from '@Components/InputField';
 import styles from './styles';
 import useRegisterTopic from './services';
 import PrimaryButton from '@Components/PrimaryButton';
+import Dropdown from '@Components/Dropdown';
 
 export default function RegisterTopicScreen(nav: NativeStackScreenProps<any>) {
   const {navigation} = nav;
-  const {title, content, setTitle, setContent, handleRegister} =
-    useRegisterTopic(nav);
+  const {
+    handleRegister,
+    listTopicValueProps,
+    setSelectedTopic,
+    selectedTopic,
+    detail,
+  } = useRegisterTopic(nav);
 
   return (
     <MainContainer>
@@ -20,23 +25,35 @@ export default function RegisterTopicScreen(nav: NativeStackScreenProps<any>) {
         title="Đăng ký đề tài"
         navigation={navigation}
         statusBarColor={Colors.secondary}>
-        <InputField
-          label="Đề tài"
-          containerStyle={styles.nameInput}
-          showLabel
-          disabledBoxShadow
-          value={title}
-          onChangeText={text => setTitle(text)}
+        <Text primarySemiBold md marginB-4 marginL-6>
+          Đề tài
+        </Text>
+        <Dropdown
+          marginT={46}
+          placeholder="Chọn đề tài"
+          data={listTopicValueProps}
+          onSelect={item => {
+            setSelectedTopic(item);
+          }}
+          selectedValue={selectedTopic}
         />
-        <InputField
-          label="Chi tiết"
-          containerStyle={styles.nameInput}
-          showLabel
-          disabledBoxShadow
-          value={content}
-          onChangeText={text => setContent(text)}
-          numberOfLines={20}
-        />
+        {selectedTopic && (
+          <>
+            <Text primarySemiBold md marginB-4 marginL-6>
+              Chi tiết
+            </Text>
+            <View
+              //@ts-expect-error
+              border={0.5}
+              radius={10}
+              padding-4
+              borderColor={Colors.gray3}>
+              <Text primarySemiBold md marginB-4 marginL-6>
+                {detail}
+              </Text>
+            </View>
+          </>
+        )}
 
         <PrimaryButton
           textStyle={styles.updateText}
