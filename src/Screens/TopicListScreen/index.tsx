@@ -1,7 +1,7 @@
 import {Colors, TouchableOpacity, View} from 'react-native-ui-lib';
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {TextInput} from 'react-native';
+import {TextInput, Keyboard} from 'react-native';
 
 import MainContainer from '@Containers/MainContainer';
 import MainLayout from '@Containers/MainLayout';
@@ -68,7 +68,13 @@ export default function TopicListScreen(nav: NativeStackScreenProps<any>) {
               placeholder="Tìm kiếm đề tài"
               style={styles.text}
             />
-            <TouchableOpacity width={'20%'} center onPress={handleSearch}>
+            <TouchableOpacity
+              width={'20%'}
+              center
+              onPress={() => {
+                Keyboard.dismiss();
+                handleSearch();
+              }}>
               <SvgXml xml={SearchIcon} />
             </TouchableOpacity>
           </View>
