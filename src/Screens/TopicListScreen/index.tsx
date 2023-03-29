@@ -1,6 +1,7 @@
-import {Colors} from 'react-native-ui-lib';
+import {Colors, TouchableOpacity, View} from 'react-native-ui-lib';
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {TextInput} from 'react-native';
 
 import MainContainer from '@Containers/MainContainer';
 import MainLayout from '@Containers/MainLayout';
@@ -8,6 +9,9 @@ import useTopicList from './services';
 import MainLoading from '@Components/MainLoading';
 import TopicItem from '@Components/TopicItem';
 import SubButton from '@Components/SubButton';
+import SvgXml, {SearchIcon} from '@Components/SvgXml';
+import styles from './styles';
+import FlatlistPaged from '@Components/FlatlistPaged';
 
 export default function TopicListScreen(nav: NativeStackScreenProps<any>) {
   const {navigation} = nav;
@@ -18,11 +22,16 @@ export default function TopicListScreen(nav: NativeStackScreenProps<any>) {
     handleScroll,
     handleRegister,
     currentUser,
+    searchText,
+    setSearchText,
+    textInputRef,
+    handleSearch,
   } = useTopicList(nav);
 
   return (
     <MainContainer>
       <MainLayout
+        isFlatList
         onScroll={handleScroll}
         subButton={
           currentUser &&
@@ -39,12 +48,38 @@ export default function TopicListScreen(nav: NativeStackScreenProps<any>) {
         title="Danh sách đề tài"
         navigation={navigation}
         statusBarColor={Colors.secondary}>
+        <View
+          marginV-8
+          paddingH-6
+          paddingV-10
+          row
+          centerV
+          //@ts-expect-errors
+          radius={16}
+          backgroundColor="#F6F6F6">
+          <View row width={'100%'}>
+            <TextInput
+              ref={textInputRef}
+              value={searchText}
+              onChangeText={text => {
+                setSearchText(text);
+              }}
+              placeholderTextColor={Colors.black1}
+              placeholder="Tìm kiếm đề tài"
+              style={styles.text}
+            />
+            <TouchableOpacity width={'20%'} center onPress={handleSearch}>
+              <SvgXml xml={SearchIcon} />
+            </TouchableOpacity>
+          </View>
+        </View>
         {isLoading ? (
           <MainLoading />
         ) : (
-          topicList.map(item => {
-            return <TopicItem data={item} key={item.id} />;
-          })
+          <FlatlistPaged
+            data={topicList}
+            renderItem={({item}) => <TopicItem data={item} />}
+          />
         )}
       </MainLayout>
     </MainContainer>

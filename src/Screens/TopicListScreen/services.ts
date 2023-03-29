@@ -1,6 +1,6 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {LayoutAnimation} from 'react-native';
+import {LayoutAnimation, TextInput} from 'react-native';
 
 import {ITopic} from '@Types/ITopic';
 import ScreenNames from '@Constants/ScreenNames';
@@ -15,6 +15,8 @@ export default function useTopicList(nav: NativeStackScreenProps<any>) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [topicList, setTopicList] = useState<ITopic[]>([]);
   const [showButtonTitle, setShowButtonTitle] = useState<boolean>(true);
+  const [searchText, setSearchText] = useState<string>('');
+  const textInputRef = useRef<TextInput>(null);
 
   const handleRegister = () => {
     navigation.push(ScreenNames.RegisterTopic, {data: route.params?.data});
@@ -45,11 +47,14 @@ export default function useTopicList(nav: NativeStackScreenProps<any>) {
     }
   };
 
+  const handleSearch = () => {
+    getTopicList();
+  };
+
   const getTopicList = async () => {
     setIsLoading(true);
     try {
-      const res = await getTopics();
-      console.log(res);
+      const res = await getTopics(searchText || '');
       setTopicList(res);
     } catch (error) {
       console.error(error);
@@ -71,5 +76,9 @@ export default function useTopicList(nav: NativeStackScreenProps<any>) {
     handleScroll,
     handleRegister,
     currentUser,
+    searchText,
+    setSearchText,
+    textInputRef,
+    handleSearch,
   };
 }
