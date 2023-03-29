@@ -8,11 +8,11 @@ import {getTopics} from '@Api/TopicApi';
 import {studentSelectTopic} from '@Api/StudentApi';
 import {useDispatch, useSelector} from 'react-redux';
 import {IRootState} from '@Store/configureStore';
-import {refetchUser} from '@Store/Reducers/userSlice';
+import {updateUser} from '@Store/Reducers/userSlice';
 
 export default function useRegisterTopic(nav: NativeStackScreenProps<any>) {
   const {navigation} = nav;
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const currentUser = useSelector((state: IRootState) => state.user);
 
   const [listTopic, setListTopic] = useState<ITopic[]>([]);
@@ -36,7 +36,7 @@ export default function useRegisterTopic(nav: NativeStackScreenProps<any>) {
       if (res) {
         navigation.pop();
         ShowMessage({message: 'Đăng ký đề tài thành công.', type: 'success'});
-        // dispatch(refetchUser());
+        dispatch(updateUser({selected_topic_id: selectedTopic.value}));
       } else {
         ShowMessage({message: 'Có lỗi khi đăng ký đề tài.', type: 'success'});
       }
