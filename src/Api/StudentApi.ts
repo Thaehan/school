@@ -1,4 +1,5 @@
 import {baseUrl} from '@Configs/configs';
+import {IStudent} from '@Types/IStudent';
 import axios from 'axios';
 
 const studentUrl = `${baseUrl}/students`;
@@ -16,5 +17,14 @@ export const studentSelectTopic = async (
     student_id,
     topic_id,
   });
+  return res.data;
+};
+
+export const updateStudentById = async (info: {
+  id: string;
+  data?: IStudent;
+}) => {
+  const res = await axios.post(`${studentUrl}/update`, info);
+
   return res.data;
 };

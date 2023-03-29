@@ -103,11 +103,11 @@ export default function DateTimePicker({
       <View style={containerStyle || {paddingVertical: 8}}>
         <View
           //@ts-expect-errors
-          border
+          border={0.5}
           paddingV-8
           paddingH-16
-          radius={5}
-          borderColor={Colors.gray1}
+          radius={10}
+          borderColor={Colors.gray3}
           backgroundColor={disabled ? Colors.mainGray1 : Colors.white}>
           <TouchableOpacity
             centerV

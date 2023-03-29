@@ -1,4 +1,4 @@
-import {Colors} from 'react-native-ui-lib';
+import {Colors, Text} from 'react-native-ui-lib';
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
@@ -9,10 +9,21 @@ import styles from './styles';
 import DatePicker from '@Components/DatePicker';
 import useUpdateAccount from './services';
 import PrimaryButton from '@Components/PrimaryButton';
+import Dropdown from '@Components/Dropdown';
 
 export default function UpdateAccountScreen(nav: NativeStackScreenProps<any>) {
   const {navigation} = nav;
-  const {birthday, setBirthday, handleUpdate} = useUpdateAccount(nav);
+  const {
+    date_of_birth,
+    setdate_of_birth,
+    setfirst_name,
+    setlast_name,
+    setAddress,
+    handleUpdate,
+    genders,
+    gender,
+    setGender,
+  } = useUpdateAccount(nav);
 
   return (
     <MainContainer>
@@ -25,24 +36,36 @@ export default function UpdateAccountScreen(nav: NativeStackScreenProps<any>) {
           containerStyle={styles.nameInput}
           showLabel
           disabledBoxShadow
+          onChangeText={text => {
+            setlast_name(text);
+          }}
         />
         <InputField
           label="Tên"
           containerStyle={styles.nameInput}
           showLabel
           disabledBoxShadow
+          onChangeText={text => {
+            setfirst_name(text);
+          }}
         />
-        <InputField
-          label="Giới tính"
-          containerStyle={styles.nameInput}
-          showLabel
-          disabledBoxShadow
+        <Text primarySemiBold black marginL-8 marginB-6>
+          Giới tính
+        </Text>
+        <Dropdown
+          marginT={46}
+          placeholder="Chọn giới tính"
+          data={genders}
+          onSelect={item => {
+            setGender(item);
+          }}
+          selectedValue={gender}
         />
         <DatePicker
           label="Ngày sinh"
           mode="date"
-          onChangeValue={date => setBirthday(date)}
-          value={birthday}
+          onChangeValue={date => setdate_of_birth(date)}
+          value={date_of_birth}
           showLabel
         />
 
@@ -51,6 +74,9 @@ export default function UpdateAccountScreen(nav: NativeStackScreenProps<any>) {
           containerStyle={styles.nameInput}
           showLabel
           disabledBoxShadow
+          onChangeText={text => {
+            setAddress(text);
+          }}
         />
         <PrimaryButton
           textStyle={styles.updateText}

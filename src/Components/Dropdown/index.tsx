@@ -135,7 +135,7 @@ const Dropdown: FC<Props> = ({
       paddingV-8
       paddingH-16
       marginB-8
-      border={1}
+      border={0.5}
       borderColor={Colors.gray3}
       radius={10}
       ref={DropdownButton}

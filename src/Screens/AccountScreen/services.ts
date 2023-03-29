@@ -96,16 +96,12 @@ export default function useAccount(nav: NativeStackScreenProps<any>) {
   };
 
   useEffect(() => {
-    const focus = navigation.addListener('focus', () => {
+    const unsubscribe = navigation.addListener('focus', () => {
       getData();
     });
 
-    return focus;
-  }, [navigation]);
-
-  useEffect(() => {
-    getData();
-  }, [currentUser]);
+    return unsubscribe;
+  }, [navigation, currentUser.studentData]);
 
   return {
     isLoading,
