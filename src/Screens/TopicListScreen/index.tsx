@@ -1,7 +1,7 @@
-import {Colors, TouchableOpacity, View} from 'react-native-ui-lib';
+import {Colors, Text, TouchableOpacity, View} from 'react-native-ui-lib';
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {TextInput, Keyboard} from 'react-native';
+import {TextInput, Keyboard, ScrollView} from 'react-native';
 
 import MainContainer from '@Containers/MainContainer';
 import MainLayout from '@Containers/MainLayout';
@@ -11,7 +11,7 @@ import TopicItem from '@Components/TopicItem';
 import SubButton from '@Components/SubButton';
 import SvgXml, {SearchIcon} from '@Components/SvgXml';
 import styles from './styles';
-import FlatlistPaged from '@Components/FlatlistPaged';
+import TeacherItem from '@Components/TeacherItem';
 
 export default function TopicListScreen(nav: NativeStackScreenProps<any>) {
   const {navigation} = nav;
@@ -26,6 +26,7 @@ export default function TopicListScreen(nav: NativeStackScreenProps<any>) {
     setSearchText,
     textInputRef,
     handleSearch,
+    teacherList,
   } = useTopicList(nav);
 
   return (
@@ -65,7 +66,7 @@ export default function TopicListScreen(nav: NativeStackScreenProps<any>) {
                 setSearchText(text);
               }}
               placeholderTextColor={Colors.black1}
-              placeholder="Tìm kiếm đề tài"
+              placeholder="Tìm kiếm"
               style={styles.text}
             />
             <TouchableOpacity
@@ -82,10 +83,36 @@ export default function TopicListScreen(nav: NativeStackScreenProps<any>) {
         {isLoading ? (
           <MainLoading />
         ) : (
-          <FlatlistPaged
-            data={topicList}
-            renderItem={({item}) => <TopicItem data={item} />}
-          />
+          <ScrollView>
+            <Text primarySemiBold lg>
+              Giảng viên
+            </Text>
+            {teacherList.length !== 0 ? (
+              teacherList.map(item => {
+                return <TeacherItem data={item} />;
+              })
+            ) : (
+              <View flexG center paddingV-16>
+                <Text primaryRegular lg>
+                  Không có kết quả phù hợp.
+                </Text>
+              </View>
+            )}
+            <Text primarySemiBold lg>
+              Đề tài
+            </Text>
+            {topicList.length !== 0 ? (
+              topicList.map(item => {
+                return <TopicItem data={item} />;
+              })
+            ) : (
+              <View flexG center paddingV-16>
+                <Text primaryRegular lg>
+                  Không có kết quả phù hợp.
+                </Text>
+              </View>
+            )}
+          </ScrollView>
         )}
       </MainLayout>
     </MainContainer>

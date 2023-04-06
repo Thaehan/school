@@ -7,12 +7,14 @@ import ScreenNames from '@Constants/ScreenNames';
 import {getTopics} from '@Api/TopicApi';
 import {useSelector} from 'react-redux';
 import {IRootState} from '@Store/configureStore';
+import {ITeacher} from '@Types/ITeacher';
 
 export default function useTopicList(nav: NativeStackScreenProps<any>) {
   const {navigation, route} = nav;
   const currentUser = useSelector((state: IRootState) => state.user);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [teacherList, setTeacherList] = useState<ITeacher[]>([]);
   const [topicList, setTopicList] = useState<ITopic[]>([]);
   const [showButtonTitle, setShowButtonTitle] = useState<boolean>(true);
   const [searchText, setSearchText] = useState<string>('');
@@ -55,7 +57,8 @@ export default function useTopicList(nav: NativeStackScreenProps<any>) {
     setIsLoading(true);
     try {
       const res = await getTopics(searchText || '');
-      setTopicList(res);
+      setTopicList(res.topics);
+      setTeacherList(res.teachers);
     } catch (error) {
       console.error(error);
     } finally {
@@ -80,5 +83,6 @@ export default function useTopicList(nav: NativeStackScreenProps<any>) {
     setSearchText,
     textInputRef,
     handleSearch,
+    teacherList,
   };
 }

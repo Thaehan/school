@@ -5,6 +5,7 @@ export interface ITopic {
   topic_name?: string;
   detail?: string;
   teacher_id?: string;
+  tags?: string[];
   creator?: ITeacher;
   createdAt?: string;
 }
