@@ -47,7 +47,8 @@ export default function useRegisterTopic(nav: NativeStackScreenProps<any>) {
 
   const getData = async () => {
     try {
-      const res: ITopic[] = await getTopics();
+      const result = await getTopics({});
+      const res: ITopic[] = result.topics;
 
       const tempList: IValueProps[] = res.map(item => {
         return {
@@ -73,7 +74,6 @@ export default function useRegisterTopic(nav: NativeStackScreenProps<any>) {
     const tempSelectedTopic = listTopic.find(item => {
       return item.id === selectedTopic.value;
     });
-    console.log(tempSelectedTopic);
     setDetail(tempSelectedTopic?.detail ?? '');
   };
 

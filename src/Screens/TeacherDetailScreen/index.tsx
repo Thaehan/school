@@ -8,11 +8,13 @@ import useTeacherDetail from './services';
 import AccountDetailItem from '@Components/AccountDetailItem';
 import MainLoading from '@Components/MainLoading';
 import {arrayToString} from '@Utils/utils';
+import TopicOfTeacher from '@Components/TopicOfTeacher';
+import BottomLine from '@Components/BottomLine';
 
 export default function TeacherDetailScreen(nav: NativeStackScreenProps<any>) {
   const {navigation} = nav;
 
-  const {teacherData, isLoading} = useTeacherDetail(nav);
+  const {teacherData, isLoading, listTopic} = useTeacherDetail(nav);
 
   return (
     <MainContainer>
@@ -49,6 +51,16 @@ export default function TeacherDetailScreen(nav: NativeStackScreenProps<any>) {
                 );
               }
             })}
+            <BottomLine />
+            <View center>
+              <Text primarySemiBold lg primary>
+                Danh sách đề tài:
+              </Text>
+            </View>
+            {listTopic &&
+              listTopic.map(item => {
+                return <TopicOfTeacher data={item} key={item.id} />;
+              })}
           </>
         )}
       </MainLayout>

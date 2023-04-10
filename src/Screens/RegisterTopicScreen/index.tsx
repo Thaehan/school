@@ -39,9 +39,6 @@ export default function RegisterTopicScreen(nav: NativeStackScreenProps<any>) {
         />
         {selectedTopic && (
           <>
-            <Text primarySemiBold md marginB-4 marginL-6>
-              Chi tiết
-            </Text>
             <View
               //@ts-expect-error
               border={0.5}

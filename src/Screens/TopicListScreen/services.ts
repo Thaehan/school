@@ -56,7 +56,7 @@ export default function useTopicList(nav: NativeStackScreenProps<any>) {
   const getTopicList = async () => {
     setIsLoading(true);
     try {
-      const res = await getTopics(searchText || '');
+      const res = await getTopics({search: searchText || ''});
       setTopicList(res.topics);
       setTeacherList(res.teachers);
     } catch (error) {
