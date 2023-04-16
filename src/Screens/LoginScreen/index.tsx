@@ -13,7 +13,7 @@ import styles from './styles';
 import {translate} from '@Languages/Translate';
 
 export default function LoginScreen(nav: NativeStackScreenProps<any>) {
-  const {setUsername, setPassword, handleLogin, handleRegister} = useLogin(nav);
+  const {setUsername, setPassword, handleLogin} = useLogin(nav);
 
   return (
     <MainContainer>
@@ -50,7 +50,7 @@ export default function LoginScreen(nav: NativeStackScreenProps<any>) {
             containerStyle={styles.loginButton}
             textStyle={styles.loginButtonText}
           />
-          <View row center padding-xss marginT-40>
+          {/* <View row center padding-xss marginT-40>
             <Text black1 primarySemiBold>
               {'Nếu chưa có tài khoản, vui lòng '}
             </Text>
@@ -60,7 +60,7 @@ export default function LoginScreen(nav: NativeStackScreenProps<any>) {
               containerStyle={styles.registerButton}
               textStyle={styles.registerButtonText}
             />
-          </View>
+          </View> */}
           {/* <PrimaryButton
             label="Đăng nhập với tư cách tài khoản khách"
             onPress={handleGuest}
