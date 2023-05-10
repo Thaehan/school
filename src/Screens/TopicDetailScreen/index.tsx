@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import moment from 'moment';
 import {useDispatch, useSelector} from 'react-redux';
+import StarRating from 'react-native-star-rating-widget';
 
 import MainLayout from '@Containers/MainLayout';
 import MainContainer from '@Containers/MainContainer';
@@ -17,22 +18,45 @@ import {IRootState} from '@Store/configureStore';
 import styles from './styles';
 import {ShowMessage} from '@Utils/flashMessage';
 import {updateStudent} from '@Store/Reducers/userSlice';
+import {ratingTopic} from '@Api/TopicApi';
 
 export default function TopicDetailScreen(nav: NativeStackScreenProps<any>) {
-  const {navigation} = nav;
+  const {navigation, route} = nav;
   //@ts-expect-error
   const {data}: {data: ITopic} = nav.route.params;
-  const [categories, setCategories] = useState<Record<string, string>>({});
-  const currentUser = useSelector((state: IRootState) => state.user);
   const dispatch = useDispatch();
+  const currentUser = useSelector((state: IRootState) => state.user);
+
+  const [categories, setCategories] = useState<Record<string, string>>({});
+  const [rating, setRating] = useState<number>(0);
 
   const getCategories = async () => {
-    const res = await getAll();
-    const _categories: Record<string, string> = {};
-    res.forEach((item: any) => {
-      _categories[item.id] = item.category_name;
-    });
-    setCategories(_categories);
+    try {
+      const res = await getAll();
+      const _categories: Record<string, string> = {};
+      res.forEach((item: any) => {
+        _categories[item.id] = item.category_name;
+      });
+      if (
+        route.params &&
+        route.params.data &&
+        currentUser.teacherData &&
+        currentUser.teacherData.id
+      ) {
+        const currentRating = route.params.data.rating.find((item: any) => {
+          if (item.teacherId === currentUser.teacherData?.id) {
+            return item;
+          }
+        });
+        if (currentRating) {
+          setRating(currentRating.level);
+          console.log(currentRating);
+        }
+      }
+      setCategories(_categories);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleRegisterTopic = async () => {
@@ -53,9 +77,35 @@ export default function TopicDetailScreen(nav: NativeStackScreenProps<any>) {
     }
   };
 
+  const handleRating = async (rate: number) => {
+    try {
+      if (
+        currentUser.teacherData &&
+        currentUser.teacherData.id &&
+        route.params &&
+        route.params.data.id
+      ) {
+        const res = await ratingTopic({
+          teacherId: currentUser.teacherData.id,
+          topicId: route.params.data.id,
+          rating: rate,
+        });
+
+        if (res) {
+          ShowMessage({
+            message: 'Đánh giá thành công!',
+            position: 'top',
+            type: 'success',
+          });
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getCategories();
-    console.log(categories);
   }, []);
 
   return (
@@ -97,17 +147,29 @@ export default function TopicDetailScreen(nav: NativeStackScreenProps<any>) {
                 );
               })}
           </View>
+          {currentUser.teacherData && (
+            <View centerH paddingV-6>
+              <StarRating
+                rating={rating}
+                onChange={async rate => {
+                  setRating(rate);
+                  await handleRating(rate);
+                }}
+              />
+            </View>
+          )}
           <Text black1 primaryRegular md marginT-6>
             {data.detail}
           </Text>
-          {!currentUser.studentData?.selected_topic_id && (
-            <PrimaryButton
-              label="Đăng ký đề tài"
-              onPress={handleRegisterTopic}
-              textStyle={styles.updateText}
-              containerStyle={styles.updateButton}
-            />
-          )}
+          {!currentUser.studentData?.selected_topic_id &&
+            currentUser.studentData && (
+              <PrimaryButton
+                label="Đăng ký đề tài"
+                onPress={handleRegisterTopic}
+                textStyle={styles.updateText}
+                containerStyle={styles.updateButton}
+              />
+            )}
         </View>
       </MainLayout>
     </MainContainer>

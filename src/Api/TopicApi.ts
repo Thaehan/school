@@ -20,3 +20,12 @@ export const getTopics = async ({
   const res = await axios.get(url);
   return res.data;
 };
+
+export const ratingTopic = async (data: {
+  teacherId: string;
+  topicId: string;
+  rating: number;
+}) => {
+  const res = await axios.put(`${topicUrl}/rating/`, data);
+  return res.data;
+};

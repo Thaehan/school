@@ -67,8 +67,12 @@ export default function useTopicList(nav: NativeStackScreenProps<any>) {
   };
 
   useEffect(() => {
-    getTopicList();
-  }, []);
+    const sub = navigation.addListener('focus', () => {
+      getTopicList();
+    });
+
+    return sub;
+  }, [navigation]);
 
   return {
     isLoading,

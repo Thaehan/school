@@ -8,6 +8,7 @@ export interface ITeacher {
   date_of_birth?: string;
   gender?: string;
   email?: string;
+  address?: string;
   phone_number?: string;
   main_courses?: string[];
   topic_ids?: string[];

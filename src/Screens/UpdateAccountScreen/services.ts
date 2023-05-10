@@ -7,7 +7,9 @@ import {IValueLabel} from '@Types/IValueLabel';
 import {IRootState} from '@Store/configureStore';
 import {updateStudentById} from '@Api/StudentApi';
 import {IStudent} from '@Types/IStudent';
-import {updateStudent} from '@Store/Reducers/userSlice';
+import {updateStudent, updateTeacher} from '@Store/Reducers/userSlice';
+import {ITeacher} from '@Types/ITeacher';
+import {updateTeacherById} from '@Api/TeacherApi';
 
 export default function useUpdateAccount(nav: NativeStackScreenProps<any>) {
   const currentUser = useSelector((state: IRootState) => state.user);
@@ -36,14 +38,15 @@ export default function useUpdateAccount(nav: NativeStackScreenProps<any>) {
         return;
       }
 
-      if (!currentUser.studentData || !currentUser.studentData.id) {
+      if (!currentUser.studentData && !currentUser.teacherData) {
         ShowMessage({
           message: 'Tài khoản này không phải là sinh viên.',
           type: 'danger',
         });
         return;
       }
-      if (currentUser.studentData.id) {
+
+      if (currentUser.studentData?.id) {
         const updateData: IStudent = {
           name: {
             first_name,
@@ -60,6 +63,32 @@ export default function useUpdateAccount(nav: NativeStackScreenProps<any>) {
 
         if (res) {
           dispatch(updateStudent(updateData));
+
+          navigation.pop();
+          ShowMessage({
+            message: 'Cập nhật thông tin thành công.',
+            type: 'success',
+          });
+        }
+      }
+
+      if (currentUser.teacherData?.id) {
+        const updateData: ITeacher = {
+          name: {
+            first_name,
+            last_name,
+          },
+          date_of_birth: date_of_birth.toISOString(),
+          address,
+          gender: gender.value,
+        };
+        const res = await updateTeacherById({
+          id: currentUser.teacherData.id,
+          data: updateData,
+        });
+
+        if (res) {
+          dispatch(updateTeacher(updateData));
 
           navigation.pop();
           ShowMessage({

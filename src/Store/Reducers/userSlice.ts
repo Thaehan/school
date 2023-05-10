@@ -84,9 +84,15 @@ export const userSlice = createSlice({
         ...action.payload,
       };
     },
+    updateTeacher: (state, action: PayloadAction<ITeacher>) => {
+      state.teacherData = {
+        ...state.teacherData,
+        ...action.payload,
+      };
+    },
   },
 });
 
-export const {setUser, resetUser, refetchUser, updateStudent} =
+export const {setUser, resetUser, refetchUser, updateStudent, updateTeacher} =
   userSlice.actions;
 export default userSlice.reducer;

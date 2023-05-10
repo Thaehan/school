@@ -70,23 +70,21 @@ export default function useAccount(nav: NativeStackScreenProps<any>) {
           }
         });
 
-        console.log(tempValues);
         setValues(tempValues);
       }
       if (currentUser.teacherData) {
+        console.log('----------------');
         const tempValues: Record<string, string> = {};
         Object.entries(currentUser.teacherData).forEach(([label, value]) => {
+          console.log('item', label, value);
           if (typeof value === 'object') {
             tempValues[label] = nameObjectToString(value);
           } else if (typeof value === 'string') {
             tempValues[label] = value;
-          } else {
-            tempValues[label] = arrayToString(value);
           }
         });
 
         setValues(tempValues);
-        console.log(tempValues);
       }
     } catch (error) {
       console.error(error);
@@ -101,7 +99,7 @@ export default function useAccount(nav: NativeStackScreenProps<any>) {
     });
 
     return unsubscribe;
-  }, [navigation, currentUser.studentData]);
+  }, [navigation, currentUser.studentData, currentUser.teacherData]);
 
   return {
     isLoading,

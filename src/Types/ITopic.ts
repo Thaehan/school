@@ -8,4 +8,8 @@ export interface ITopic {
   tags?: string[];
   creator?: ITeacher;
   createdAt?: string;
+  rating?: {
+    teacherId: string;
+    level: number;
+  };
 }
