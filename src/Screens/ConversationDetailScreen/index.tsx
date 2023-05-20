@@ -16,8 +16,8 @@ import DialogItem from '@Components/DialogItem';
 import {ITeacher} from '@Types/ITeacher';
 import {IStudent} from '@Types/IStudent';
 import {nameObjectToString} from '@Utils/utils';
-import {ScrollView, StyleSheet, TextInput} from 'react-native';
-import SvgXml, {Send} from '@Components/SvgXml';
+import {ScrollView, StyleSheet, Text, TextInput} from 'react-native';
+import SvgXml, {Reload, Send} from '@Components/SvgXml';
 
 export default function ConversationDetailScreen(nav: StackScreenProps<any>) {
   const {navigation, route} = nav;
@@ -30,6 +30,14 @@ export default function ConversationDetailScreen(nav: StackScreenProps<any>) {
     useState<string>('');
   const [listChatting, setListChatting] = useState<IDialog[]>([]);
   const [text, setText] = useState<string>('');
+
+  const renderReload = () => {
+    return (
+      <TouchableOpacity onPress={getData}>
+        <SvgXml xml={Reload} />
+      </TouchableOpacity>
+    );
+  };
 
   const getData = async () => {
     setIsLoading(true);
@@ -95,13 +103,19 @@ export default function ConversationDetailScreen(nav: StackScreenProps<any>) {
         isFlatList
         title={route?.params?.username}
         navigation={navigation}
-        statusBarColor={Colors.secondary}>
+        statusBarColor={Colors.secondary}
+        right={{type: 'component', component: renderReload()}}>
         {isLoading && <MainLoading />}
         <View height="90%">
-          <ScrollView showsVerticalScrollIndicator={false}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            onScroll={event => {
+              console.log(event);
+            }}>
             {listChatting.map(item => {
               return (
                 <DialogItem
+                  key={item.createdAt}
                   username={getName(item.userId)}
                   isOwn={isMe(item.userId)}
                   dialog={item}

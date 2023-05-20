@@ -22,6 +22,7 @@ import DropDownU from '@Assets/Svg/DropDownU.svg';
 import DropDownD from '@Assets/Svg/DropDownD.svg';
 import SearchIcon from '@Assets/Svg/Search.svg';
 import Send from '@Assets/Svg/Send.svg';
+import Reload from '@Assets/Svg/Reload.svg';
 
 interface ISVGProps extends SvgProps {
   xml: any;
@@ -32,6 +33,7 @@ export default function SvgXml(props: ISVGProps) {
 }
 
 export {
+  Reload,
   Send,
   SearchIcon,
   DropDownD,

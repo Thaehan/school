@@ -76,7 +76,7 @@ export default function MainLayout({
                   <Text white>{right.title}</Text>
                 </TouchableOpacity>
               )}
-              {right && right.type === 'component' && right.component}
+              {right && right.type !== 'string' ? right.component : null}
             </View>
           </View>
           {/* </ImageBackground> */}
