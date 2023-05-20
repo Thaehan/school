@@ -16,7 +16,7 @@ import DialogItem from '@Components/DialogItem';
 import {ITeacher} from '@Types/ITeacher';
 import {IStudent} from '@Types/IStudent';
 import {nameObjectToString} from '@Utils/utils';
-import {ScrollView, StyleSheet, Text, TextInput} from 'react-native';
+import {ScrollView, StyleSheet, TextInput} from 'react-native';
 import SvgXml, {Reload, Send} from '@Components/SvgXml';
 
 export default function ConversationDetailScreen(nav: StackScreenProps<any>) {
