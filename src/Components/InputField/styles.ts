@@ -10,5 +10,6 @@ export default StyleSheet.create({
     fontSize: fontSizes.md,
     fontFamily: fontFamilies.primaryRegular,
     maxHeight: height / 3,
+    color: 'black',
   },
 });

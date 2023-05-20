@@ -15,13 +15,15 @@ export default function SubButton({
   showTitle?: boolean;
   title?: string;
   backgroundColor?: string;
-  type: 'register' | 'update';
+  type: 'register' | 'update' | 'add';
 }) {
   const renderIcon = () => {
     if (type === 'register') {
       return <SvgXml xml={RegisterTopic} />;
     }
-    return <SvgXml xml={LogoutIcon} />;
+    if (type === 'update') {
+      return <SvgXml xml={LogoutIcon} />;
+    }
   };
 
   return (

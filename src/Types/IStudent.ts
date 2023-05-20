@@ -14,4 +14,5 @@ export interface IStudent {
   academic_year?: number;
   specialization?: string;
   selected_topic_id?: string;
+  user_id?: string;
 }

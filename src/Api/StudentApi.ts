@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const studentUrl = `${baseUrl}/students`;
 
-export const getStudentById = async (params?: any) => {
+export const getStudentById = async (params: any) => {
   const res = await axios.get(`${studentUrl}/${params}`);
   return res.data;
 };
@@ -27,4 +27,15 @@ export const updateStudentById = async (info: {
   const res = await axios.post(`${studentUrl}/update`, info);
 
   return res.data;
+};
+
+export const getAll = async () => {
+  const res = await axios.get(`${studentUrl}/`);
+  return res.data;
+};
+
+export default {
+  getStudentById,
+  studentSelectTopic,
+  getAll,
 };

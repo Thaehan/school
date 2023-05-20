@@ -13,4 +13,5 @@ export interface ITeacher {
   main_courses?: string[];
   topic_ids?: string[];
   avatar?: string;
+  user_id?: string;
 }

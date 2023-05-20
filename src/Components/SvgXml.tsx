@@ -21,6 +21,7 @@ import RegisterTopic from '@Assets/Svg/RegisterTopic.svg';
 import DropDownU from '@Assets/Svg/DropDownU.svg';
 import DropDownD from '@Assets/Svg/DropDownD.svg';
 import SearchIcon from '@Assets/Svg/Search.svg';
+import Send from '@Assets/Svg/Send.svg';
 
 interface ISVGProps extends SvgProps {
   xml: any;
@@ -31,6 +32,7 @@ export default function SvgXml(props: ISVGProps) {
 }
 
 export {
+  Send,
   SearchIcon,
   DropDownD,
   DropDownU,

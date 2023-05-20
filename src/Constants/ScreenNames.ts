@@ -13,4 +13,6 @@ export default {
   TopicDetail: 'TopicDetailScreen',
   UpdateAccount: 'UpdateAcountScreen',
   RegisterTopic: 'RegisterTopicScreen',
+  ConversationList: 'ConversationListScreen',
+  ConversationDetail: 'ConversationDetailScreen',
 };

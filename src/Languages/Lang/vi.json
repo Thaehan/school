@@ -21,7 +21,8 @@
     "Account": "Tài khoản",
     "AccountInformation": "Thông tin tài khoản",
     "TeacherList": "Danh sách giảng viên",
-    "TopicList": "Danh sách đề tài"
+    "TopicList": "Danh sách đề tài",
+    "Conversation": "Hộp thư"
   },
   "business": {
     "teacher_code": "Mã giảng viên",

@@ -97,6 +97,7 @@ export default function MainLayout({
           paddingVertical: paddingV ? paddingV : 0,
           paddingHorizontal: paddingH ? paddingH : 16,
           padding: padding ? padding : 0,
+          position: 'relative',
         }}>
         {isFlatList ? (
           children

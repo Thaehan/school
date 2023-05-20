@@ -18,3 +18,8 @@ export const updateTeacherById = async (info: {
 
   return res.data;
 };
+
+export default {
+  getTeachers,
+  updateTeacherById,
+};

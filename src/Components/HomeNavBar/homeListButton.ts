@@ -21,6 +21,12 @@ const homeListButton: IHomeListButton[] = [
     assetName: 'tuition',
     screenName: ScreenNames.TopicList,
   },
+  {
+    id: 4,
+    name: translate('home.Conversation'),
+    assetName: 'checkin',
+    screenName: ScreenNames.ConversationList,
+  },
   // {
   //   id: 4,
   //   name: translate('home.InOut2Line'),
