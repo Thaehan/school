@@ -24,7 +24,7 @@ export const updateStudentById = async (info: {
   id: string;
   data?: IStudent;
 }) => {
-  const res = await axios.post(`${studentUrl}/update`, info);
+  const res = await axios.put(`${studentUrl}/update`, info);
 
   return res.data;
 };

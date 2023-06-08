@@ -40,7 +40,8 @@ export default function useUpdateAccount(nav: NativeStackScreenProps<any>) {
 
       if (!currentUser.studentData && !currentUser.teacherData) {
         ShowMessage({
-          message: 'Tài khoản này không phải là sinh viên.',
+          message:
+            'Tài khoản này không phải là sinh viên và không phải là giảng viên.',
           type: 'danger',
         });
         return;
@@ -70,6 +71,7 @@ export default function useUpdateAccount(nav: NativeStackScreenProps<any>) {
             type: 'success',
           });
         }
+        return;
       }
 
       if (currentUser.teacherData?.id) {
